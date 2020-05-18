@@ -21,19 +21,19 @@ const schema = new mongoose.Schema(
       {
         type: String,
         enum: [
-          'gluten',
-          'celery',
-          'sesame',
-          'nuts',
-          'lupin',
-          'peanuts',
-          'fish',
-          'milk',
-          'mollusks',
-          'sulphites',
-          'crustaceans',
-          'wheat',
-          'mustard'
+          'Gluten',
+          'Celery',
+          'Sesame',
+          'Nuts',
+          'Lupin',
+          'Peanuts',
+          'Fish',
+          'Milk',
+          'Mollusks',
+          'Sulphites',
+          'Crustaceans',
+          'Wheat',
+          'Mustard'
         ]
       }
     ],
