@@ -57,7 +57,7 @@ app.use(bindUserToViewLocals);
 
 app.use('/', indexRouter);
 app.use('/authentication', authenticationRouter);
-app.use('/user', userRouter);
+app.use('/foodie', userRouter);
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {

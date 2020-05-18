@@ -12,7 +12,7 @@ authenticationRouter.get('/sign-up', (req, res, next) => {
 });
 
 authenticationRouter.post('/sign-up', (req, res, next) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, userType } = req.body;
   bcryptjs
     .hash(password, 10)
     .then((hash) => {
@@ -24,7 +24,11 @@ authenticationRouter.post('/sign-up', (req, res, next) => {
     })
     .then((user) => {
       req.session.user = user._id;
-      res.redirect('/private');
+      if (user.userType === 'foodie') {
+        res.redirect('/foodie/edit');
+      } else {
+        res.redirect('/restaurant/create');
+      }
     })
     .catch((error) => {
       next(error);
