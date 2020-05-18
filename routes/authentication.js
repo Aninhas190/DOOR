@@ -7,6 +7,8 @@ const User = require('../models/user');
 
 const authenticationRouter = new Router();
 
+const routeGuard = require('../middleware/route-guard');
+
 authenticationRouter.get('/sign-up', (req, res, next) => {
   res.render('sign-up');
 });
@@ -72,6 +74,10 @@ authenticationRouter.post('/sign-in', (req, res, next) => {
     .catch((error) => {
       next(error);
     });
+});
+
+authenticationRouter.get('/private', routeGuard, (req, res, next) => {
+  res.render('private');
 });
 
 authenticationRouter.post('/sign-out', (req, res, next) => {
