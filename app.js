@@ -17,6 +17,8 @@ const authenticationRouter = require('./routes/authentication');
 
 const app = express();
 
+console.log('hello');
+
 app.set('views', join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
@@ -25,8 +27,7 @@ app.use(
   sassMiddleware({
     src: join(__dirname, 'public'),
     dest: join(__dirname, 'public'),
-    outputStyle:
-      process.env.NODE_ENV === 'development' ? 'nested' : 'compressed',
+    outputStyle: process.env.NODE_ENV === 'development' ? 'nested' : 'compressed',
     force: process.env.NODE_ENV === 'development',
     sourceMap: true
   })
