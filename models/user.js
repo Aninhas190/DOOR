@@ -17,6 +17,26 @@ const schema = new mongoose.Schema(
     passwordHash: {
       type: String
     },
+    allergies: [
+      {
+        type: String,
+        enum: [
+          'gluten',
+          'celery',
+          'sesame',
+          'nuts',
+          'lupin',
+          'peanuts',
+          'fish',
+          'milk',
+          'mollusks',
+          'sulphites',
+          'crustaceans',
+          'wheat',
+          'mustard'
+        ]
+      }
+    ],
     userType: {
       type: String,
       enum: ['foodie', 'restaurantOwner'],
