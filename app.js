@@ -17,8 +17,6 @@ const authenticationRouter = require('./routes/authentication');
 
 const app = express();
 
-console.log('hello');
-
 app.set('views', join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
