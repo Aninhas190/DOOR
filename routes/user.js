@@ -6,12 +6,12 @@ const routeGuard = require('../middleware/route-guard');
 
 const User = require('./../models/user');
 
-//route to view
+// Route to view
 userRouter.get('/', (req, res, next) => {
   res.render('foodie/foodie');
 });
 
-//route to create user
+// Route to create allergy list
 userRouter.get('/edit', (req, res, next) => {
   res.render('foodie/edit');
 });
@@ -24,5 +24,7 @@ userRouter.post('/edit', (req, res, next) => {
     })
     .catch((error) => next(error));
 });
+
+
 
 module.exports = userRouter;
