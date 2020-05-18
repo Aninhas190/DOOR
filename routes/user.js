@@ -8,7 +8,7 @@ const User = require('./../models/user');
 
 //route to view
 userRouter.get('/', (req, res, next) => {
-  res.render('foodie');
+  res.render('foodie/foodie');
 });
 
 //route to create user

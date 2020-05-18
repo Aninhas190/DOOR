@@ -26,7 +26,7 @@ authenticationRouter.post('/sign-up', (req, res, next) => {
       req.session.user = user._id;
       if (user.userType === 'foodie') {
         res.redirect('/foodie/edit');
-      } else {
+      } else if (user.userType === 'restaurantOwner') {
         res.redirect('/restaurant/create');
       }
     })
