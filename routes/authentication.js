@@ -16,14 +16,6 @@ authenticationRouter.get('/sign-up', (req, res, next) => {
 authenticationRouter.post('/sign-up', (req, res, next) => {
   const { name, email, password, userType } = req.body;
 
-  let typeOfUser = () => {
-    if (userType === 'foodie') {
-      return typeOfUser = 'Foodie';
-    } else {
-      return typeOfUser = 'Restaurant Owner';
-    }
-  };
-
   bcryptjs
     .hash(password, 10)
     .then((hash) => {
@@ -31,7 +23,7 @@ authenticationRouter.post('/sign-up', (req, res, next) => {
         name,
         email,
         passwordHash: hash,
-        userType: typeOfUser
+        userType
       });
     })
     .then((user) => {
