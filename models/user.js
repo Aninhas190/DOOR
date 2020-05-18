@@ -39,8 +39,7 @@ const schema = new mongoose.Schema(
     ],
     userType: {
       type: String,
-      enum: ['foodie', 'restaurantOwner'],
-      default: 'foodie'
+      enum: ['foodie', 'restaurantOwner']
     }
   },
   {
