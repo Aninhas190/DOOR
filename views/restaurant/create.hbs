@@ -1,17 +1,28 @@
 <form method="POST">
 
-
   <label for="input-restaurant-name">Restaurant Name</label>
   <input type="text" id="input-restaurant-name" name="name" required placeholder="Restaurant Name" />
 
   <label for="input-image">Restaurant Image</label>
   <input type="file" id="input-image" name="image" placeholder="Restaurant Image" />
 
-  <label for="input-location">Location</label>
-  <input type="" name="password" id="input-password" required placeholder="Restaurant Location" />
+  <label for="input-location-latitute">Location Latitute</label>
+  <input type="text" name="latitude" id="input-password" required placeholder="Restaurant Latitude" />
 
+  <label for="input-location-longitude">Location Latitute</label>
+  <input type="text" name="longitude" id="input-password" required placeholder="Restaurant Longitude" />
 
+  <label for="input-restaurant-cuisine-type">Cuisine Type</label>
+  <input type="text" id="input-restaurant-cuisine-type" name="cuisineType" required placeholder="Cuisine Type" />
 
+  <label for="input-restaurant-description">Description</label>
+  <textarea type="text" id="input-restaurant-description" name="description" required placeholder="Restaurant Description"></textarea>
+
+  <label for="input-restaurant-contact">Restaurant Phone Number</label>
+  <input type="tel" id="input-restaurant-contact" name="contact" pattern="[0-9]{3}[0-9]{3}[0-9]{3}" required />
+  <small>Format: 123456789</small>
+
+  
 
   <button>Create Restaurant</button>
 </form>
