@@ -13,4 +13,8 @@ restaurantRouter.get('/create', (req, res, next) => {
   res.render('restaurant/create');
 }); 
 
+// restaurantRouter.post('/create', (req, res, next) => {
+//   const { name, description, }
+// })
+
 module.exports = restaurantRouter;
