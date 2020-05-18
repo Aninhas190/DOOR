@@ -1,6 +1,6 @@
 Structure of our routes
 
-GET '/': Home view. Info about the website purpose
+GET '/': Home view. Info about the website purpose plus search
 
 GET '/authentication/sign-up': Display sign up form for user
 POST '/authentication/sign-up': create user
@@ -9,8 +9,31 @@ GET '/authentication/log-in': Display log in form for restaurant/foodie
 POST '/authentication/log-in': create restaurant submision
 
 
-GET '/restaurant/main': Display restaurant page
+GET '/restaurant': Display restaurant page
 
-GET '/foodie/main': Display foodie main page
+GET '/restaurant/create': Display restaurant creation page
+POST '/restaurant/create': Submit create form
+
+GET '/restaurant/edit': Display restaurant edit page
+POST '/restaurant/edit': Update edit page
+
+POST '/restaurant/delete': Delete restauratn
+
+
+
+GET '/restaurant/list': View list restaurant
+
+GET '/restaurant/restaurantId': View single restaurant
+
+GET '/restaurant/restaurantId/menu': View menu restaurant
+
+
+
+GET '/foodie': Display foodie main page
+
+GET '/foodie/edit ': Display foodie edit page
+POST '/foodie/edit ': Update edit page
+
+
 
 
