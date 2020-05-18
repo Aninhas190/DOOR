@@ -13,13 +13,23 @@ authenticationRouter.get('/sign-up', (req, res, next) => {
 
 authenticationRouter.post('/sign-up', (req, res, next) => {
   const { name, email, password, userType } = req.body;
+
+  let typeOfUser = () => {
+    if (userType === 'foodie') {
+      return typeOfUser = 'Foodie';
+    } else {
+      return typeOfUser = 'Restaurant Owner';
+    }
+  };
+
   bcryptjs
     .hash(password, 10)
     .then((hash) => {
       return User.create({
         name,
         email,
-        passwordHash: hash
+        passwordHash: hash,
+        userType: typeOfUser
       });
     })
     .then((user) => {
