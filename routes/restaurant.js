@@ -17,14 +17,14 @@ restaurantRouter.get('/', (req, res, next) => {
 //by zomato ID
 restaurantRouter.get('/createByZomatoId', (req, res, next) => {
   res.render('restaurant/createByZomatoId');
-}); 
+});
 
 restaurantRouter.post('/createByZomatoId', routeGuard, (req, res, next) => {
   const ownerId = req.user;
-  const restaurantId = req.body.zomatoId;
+  const zomatoRestaurantId = req.body.zomatoId;
   zomato
-    .restaurant({res_id: restaurantId})
-    .then(restaurantData => {
+    .restaurant({ res_id: zomatoRestaurantId })
+    .then((restaurantData) => {
       return Restaurant.create({
         name: restaurantData.name,
         location: {
@@ -35,38 +35,50 @@ restaurantRouter.post('/createByZomatoId', routeGuard, (req, res, next) => {
         averagePrice: restaurantData.average_cost_for_two,
         contact: restaurantData.phone_numbers.split(' ').join(''),
         owner: ownerId
-      })
-      .then(restaurant => {
+      }).then((restaurant) => {
         console.log(restaurant);
-        res.render('restaurant/index', {restaurant});
+        res.render('restaurant/index', { restaurant });
       });
     })
-    .catch(error => next(error));
-}); 
+    .catch((error) => next(error));
+});
 
 //manually
 restaurantRouter.get('/create', (req, res, next) => {
   res.render('restaurant/create');
-}); 
+});
 
 restaurantRouter.post('/create', (req, res, next) => {
   const ownerId = req.user;
-  const { name, description, latitute, longitute, cuisineType, contact} = req.body;
+  const { name, description, latitute, longitude, cuisineType, contact } = req.body;
   Restaurant.create({
     name,
     description,
     latitute,
+    longitude,
     cuisineType,
     contact,
     owner: ownerId
   })
-    .then(restaurant => res.render('restaurant/restaurant', {restaurant}))
-    .catch(error=> next(error));
+    .then((restaurant) => res.render('restaurant/index', { restaurant }))
+    .catch((error) => next(error));
 });
 
+// List all restaurants
 restaurantRouter.get('/list', (req, res, next) => {
-  res.render('restaurant/list');
+  Restaurant.find()
+    .then((restaurants) => {
+      console.log(restaurants);
+      res.render('restaurant/list', { restaurants });
+    })
+    .catch((error) => next(error));
 });
 
+// View single restaurant
+restaurantRouter.get('/:restaurantId', (req, res, next) => {
+  const restaurantId = req.params.restaurantId;
+
+  res.render('restaurant/single');
+});
 
 module.exports = restaurantRouter;
