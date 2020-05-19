@@ -48,7 +48,18 @@ restaurantRouter.get('/create', (req, res, next) => {
 }); 
 
 restaurantRouter.post('/create', (req, res, next) => {
-  const { name, description, image, latitute, longitute, cuisineType, contact} = req.body;
+  const ownerId = req.user;
+  const { name, description, latitute, longitute, cuisineType, contact} = req.body;
+  Restaurant.create({
+    name,
+    description,
+    latitute,
+    cuisineType,
+    contact,
+    owner: ownerId
+  })
+    .then(restaurant => res.render('restaurant/restaurant', {restaurant}))
+    .catch(error=> next(error));
 });
 
 restaurantRouter.get('/list', (req, res, next) => {
