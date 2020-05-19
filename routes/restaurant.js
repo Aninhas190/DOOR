@@ -4,6 +4,8 @@ const { Router } = require('express');
 const restaurantRouter = new Router();
 const ZOMATO_API_KEY = process.env.ZOMATO_API_KEY;
 
+const routeGuard = require('./../middleware/route-guard.js');
+
 const Restaurant = require('./../models/restaurant');
 const Zomato = require('zomato.js');
 const zomato = new Zomato(ZOMATO_API_KEY);
