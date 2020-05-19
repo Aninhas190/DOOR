@@ -10,12 +10,12 @@ const Restaurant = require('./../models/restaurant');
 const Zomato = require('zomato.js');
 const zomato = new Zomato(ZOMATO_API_KEY);
 
-restaurantRouter.get('/', (req, res, next) => {
+restaurantRouter.get('/', (req, res) => {
   res.render('restaurant/index');
 });
 
 //create by zomato ID
-restaurantRouter.get('/createByZomatoId', (req, res, next) => {
+restaurantRouter.get('/createByZomatoId', (req, res) => {
   res.render('restaurant/createByZomatoId');
 });
 
@@ -44,7 +44,7 @@ restaurantRouter.post('/createByZomatoId', routeGuard, (req, res, next) => {
 });
 
 //manually
-restaurantRouter.get('/create', (req, res, next) => {
+restaurantRouter.get('/create', (req, res) => {
   res.render('restaurant/create');
 });
 
@@ -68,16 +68,14 @@ restaurantRouter.post('/create', (req, res, next) => {
 restaurantRouter.get('/list', (req, res, next) => {
   Restaurant.find()
     .then((restaurants) => {
-      console.log(restaurants);
       res.render('restaurant/list', { restaurants });
     })
     .catch((error) => next(error));
 });
 
 // View single restaurant
-restaurantRouter.get('/:restaurantId', (req, res, next) => {
+restaurantRouter.get('/:restaurantId', (req, res) => {
   const restaurantId = req.params.restaurantId;
-
   res.render('restaurant/single');
 });
 

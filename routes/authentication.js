@@ -39,11 +39,11 @@ authenticationRouter.post('/sign-up', (req, res, next) => {
     });
 });
 
-authenticationRouter.get('/sign-in', (req, res, next) => {
-  res.render('sign-in');
+authenticationRouter.get('/log-in', (req, res, next) => {
+  res.render('log-in');
 });
 
-authenticationRouter.post('/sign-in', (req, res, next) => {
+authenticationRouter.post('/log-in', (req, res, next) => {
   let user;
   const { email, password } = req.body;
   User.findOne({ email })
