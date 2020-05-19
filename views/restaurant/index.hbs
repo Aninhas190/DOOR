@@ -1,17 +1,23 @@
-<h1>Restaurant index page</h1>
+<section class="container">
+  <h1>Restaurant index page</h1>
 
-<ul>
-  {{#each restaurants}}
-  <li>
-    <h3>
-      <a href="/restaurant/{{_id}}">{{name}}</a>
-    </h3>
-    <p><strong>Cuisine Type: </strong>{{cuisineType}}</p>
-    <p><strong>Restaurant Description:</strong>{{description}}</p>
-    </br>
-  </li>
-  {{/each}}
-</ul>
-<h2>Create new restaurant</h2>
-<a href="/restaurant/createByZomatoId">Pre existing Zomato Restaurant</a>
-<a href="/restaurant/create">Create new Restaurant</a>
+  <ul>
+    {{#each restaurants}}
+    <li>
+      <h3>
+        <a href="/restaurant/{{_id}}">{{name}}</a>
+      </h3>
+      <p><strong>Cuisine Type: </strong>{{cuisineType}}</p>
+      <p><strong>Restaurant Description:</strong>{{description}}</p>
+      </br>
+    </li>
+    {{/each}}
+  </ul>
+
+  <h2>Create new restaurant</h2>
+
+  <a href="/restaurant/createByZomatoId">Pre existing Zomato Restaurant</a>
+  </br>
+  <a href="/restaurant/create">Create new Restaurant</a>
+
+</section>

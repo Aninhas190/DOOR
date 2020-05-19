@@ -1,11 +1,13 @@
-<h1>Restaurants List</h1>
-<ul>
-{{#each restaurants}}
-    <li>
-        <a href="{{_id}}">{{name}}</a>
-        <p>{{cuisineType}}</p>
-        <p>{{description}}</p>
-        </br>
-    </li>
-{{/each}}
-</ul>
+<section class="container">
+    <h1>Restaurants List</h1>
+    <ul>
+    {{#each restaurants}}
+        <li>
+            <a href="{{_id}}">{{name}}</a>
+            <p>{{cuisineType}}</p>
+            <p>{{description}}</p>
+            </br>
+        </li>
+    {{/each}}
+    </ul>
+</section>
