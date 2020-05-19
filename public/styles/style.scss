@@ -24,8 +24,10 @@ a {
 }
 
 nav {
+  margin: 0 auto;
   background-color: #ffd800;
   display: flex;
+  text-align: center;
   a,
   button {
     color: #000;
@@ -118,4 +120,38 @@ textarea {
     justify-content: center;
     padding: 1em;
   }
+}
+
+.last-section{
+  height: 60vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  .box:first-child {
+    margin-right: 3em;
+  }
+  a {
+    margin-top: 2em;
+    background-color: #ffd800;
+    padding: 1em 2em;
+    border: 1px solid red;
+  }  
+  p {
+    border: 1px solid red;
+  }
+  h4{
+    border: 1px solid red;
+  }
+}
+
+.box{
+  padding: 3em 2em;
+  background-color: rgba($color: #000, $alpha: 0.3);
+  width: 20em;
+  height: 30vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
