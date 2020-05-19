@@ -3,33 +3,38 @@
 
 body {
   max-width: 100vw;
-  padding: 0;
-  margin: 0;
   font-family: sans-serif;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Noto Sans", sans-serif;
   line-height: 2; }
+  body .container {
+    margin: 2em; }
 
 a {
   color: #000000;
   text-decoration: none; }
 
 nav {
+  width: 100%;
   margin: 0 auto;
-  padding: 0 30em;
+  text-transform: uppercase;
+  padding: 0 1em;
   background-color: #ffd800;
   display: flex;
-  text-align: center; }
+  text-align: center;
+  font-weight: bold; }
   nav a,
   nav button {
     color: #000;
     padding: 1em 1em;
-    border: 0 1em; }
+    border: none; }
     nav a:not(:last-child),
     nav button:not(:last-child) {
       margin-right: 1em; }
     nav a:first-child,
     nav button:first-child {
-      margin-right: auto; }
+      margin-right: auto;
+      text-transform: uppercase;
+      font-weight: bold; }
 
 h1,
 h2,
@@ -54,20 +59,36 @@ form {
 input,
 textarea,
 button,
-select,
-.btn {
+select {
   margin: 0 1em;
   padding: 1em;
   border: 1px solid rgba(191, 191, 191, 0.5);
   border-radius: 0;
   margin-bottom: 1em;
-  font: inherit;
   color: inherit;
   background-color: transparent; }
+
+.btn {
+  margin: 0 1em;
+  width: fit-content;
+  padding: 1em;
+  border: 1px solid rgba(191, 191, 191, 0.5);
+  border-radius: 0;
+  margin-bottom: 1em;
+  color: inherit;
+  background-color: #eae9e6;
+  transition: transform 0.6s 0.25s ease-out; }
+
+.btn:hover {
+  box-shadow: 7px 10px 6px 1px #b5b5b5;
+  transform: scale(0.9); }
 
 textarea {
   min-height: 8em;
   resize: vertical; }
+
+.fadeBackground {
+  background-color: rgba(255, 255, 255, 0.1); }
 
 .main-page {
   margin: 0;
@@ -76,21 +97,19 @@ textarea {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: url("./../images/main-page.jpg") no-repeat center/100%;
+  background: url("./../images/main-page-1 - fade.jpg") no-repeat center/100%;
   height: 90vh; }
   .main-page h1 {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.4);
     font-size: 6em;
-    padding: 0 1rem;
-    border: 3px white solid; }
+    padding: 0 3rem;
+    border: 3px white solid;
+    box-shadow: 17px 14px 5px 0px rgba(0, 0, 0, 0.575); }
   .main-page h2 {
-    margin-top: 1em;
     font-size: 3em;
     font-weight: bolder;
-    color: #fff;
-    background-color: rgba(0, 0, 0, 0.1); }
+    color: #fff; }
   .main-page div {
-    background-color: rgba(0, 0, 0, 0.3);
     margin-top: 5em;
     display: flex;
     flex-direction: column;
@@ -100,33 +119,49 @@ textarea {
     .main-page div p {
       font-size: 2em; }
 
-.last-section {
+.index-last-section {
+  background-color: #f0ebd1;
   height: 60vh;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center; }
-  .last-section .box:first-child {
+  .index-last-section .box:first-child {
     margin-right: 3em; }
-  .last-section a {
+  .index-last-section a {
     margin-top: 2em;
     background-color: #ffd800;
     padding: 1em 2em;
-    border: 1px solid red; }
-  .last-section p {
-    border: 1px solid red; }
-  .last-section h4 {
-    border: 1px solid red; }
+    border: 1px solid white;
+    border-radius: 10px;
+    font-weight: 700; }
 
 .box {
   padding: 3em 2em;
   background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
   width: 20em;
   height: 30vh;
+  width: 80vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; }
+  justify-content: center;
+  text-align: center; }
+  .box a:hover {
+    text-decoration: none;
+    color: white; }
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #eaeaea;
+  color: black;
+  text-align: right;
+  padding: 1em;
+  font-size: smaller; }
 
 .restaurant-index a {
   margin-left: 1em;
