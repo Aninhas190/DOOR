@@ -12,11 +12,11 @@
       <a href="/">Home</a>
       {{#if user}}
         <form action="/authentication/sign-out" method="POST">
-        <a href="/authentication/private">{{  user.name }}'s Profile</a>
+        <a href="/authentication/private">{{ user.name }}'s Profile</a>
         <button>Sign Out</button>
         </form>
         {{else}}
-        <a href="/authentication/sign-in">Sign In</a>
+        <a href="/authentication/log-in">Log In</a>
         <a href="/authentication/sign-up">Sign Up</a>
       {{/if}}
     </nav>
