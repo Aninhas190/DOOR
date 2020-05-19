@@ -77,8 +77,9 @@ restaurantRouter.get('/list', (req, res, next) => {
 // View single restaurant
 restaurantRouter.get('/:restaurantId', (req, res, next) => {
   const restaurantId = req.params.restaurantId;
-
-  res.render('restaurant/single');
+  Restaurant.findById(restaurantId)
+    .then((restaurant) => res.render('restaurant/single', { restaurant }))
+    .catch((error) => next(error));
 });
 
 module.exports = restaurantRouter;

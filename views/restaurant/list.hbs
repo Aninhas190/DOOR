@@ -1,7 +1,11 @@
-<p>Hello restaurants</p>
-
+<h1>Restaurants List</h1>
+<ul>
 {{#each restaurants}}
-    <h2>{{name}}</h2>
-    <p>{{cuisineType}}</p>
-    <p>{{description}}</p>
+    <li>
+        <a href="{{_id}}">{{name}}</a>
+        <p>{{cuisineType}}</p>
+        <p>{{description}}</p>
+        </br>
+    </li>
 {{/each}}
+</ul>
