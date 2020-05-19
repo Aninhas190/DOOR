@@ -9,13 +9,12 @@ const authenticationRouter = new Router();
 
 const routeGuard = require('../middleware/route-guard');
 
-authenticationRouter.get('/sign-up', (req, res, next) => {
+authenticationRouter.get('/sign-up', (req, res) => {
   res.render('sign-up');
 });
 
 authenticationRouter.post('/sign-up', (req, res, next) => {
   const { name, email, password, userType } = req.body;
-
   bcryptjs
     .hash(password, 10)
     .then((hash) => {
@@ -39,7 +38,7 @@ authenticationRouter.post('/sign-up', (req, res, next) => {
     });
 });
 
-authenticationRouter.get('/log-in', (req, res, next) => {
+authenticationRouter.get('/log-in', (req, res) => {
   res.render('log-in');
 });
 
@@ -57,12 +56,9 @@ authenticationRouter.post('/log-in', (req, res, next) => {
     })
     .then((result) => {
       req.session.user = user;
-      console.log('user type', user.userType);
       if (result && user.userType === 'foodie') {
-        console.log('condition true');
         res.redirect('/foodie');
       } else if (result && user.userType === 'restaurantOwner') {
-        console.log('condition false');
         res.redirect('/restaurant');
       } else {
         return Promise.reject(new Error('Wrong password.'));
@@ -73,11 +69,11 @@ authenticationRouter.post('/log-in', (req, res, next) => {
     });
 });
 
-authenticationRouter.get('/private', routeGuard, (req, res, next) => {
+authenticationRouter.get('/private', routeGuard, (req, res) => {
   res.render('private');
 });
 
-authenticationRouter.post('/sign-out', (req, res, next) => {
+authenticationRouter.post('/sign-out', (req, res) => {
   req.session.destroy();
   res.redirect('/');
 });

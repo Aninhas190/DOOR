@@ -2,15 +2,17 @@
 
 const { Router } = require('express');
 const restaurantRouter = new Router();
-
+//routeGuards
 const routeGuard = require('./../middleware/route-guard.js');
+const routeGuardAdmin = require('./../middleware/route-guard-admin');
+const routeGuardResOwner = require('./../middleware/route-guard-restaurant-owner');
 
 const Restaurant = require('./../models/restaurant');
 const ZOMATO_API_KEY = process.env.ZOMATO_API_KEY;
 const Zomato = require('zomato.js');
 const zomato = new Zomato(ZOMATO_API_KEY);
 
-restaurantRouter.get('/', (req, res, next) => {
+restaurantRouter.get('/', routeGuard, routeGuardResOwner, (req, res, next) => {
   const ownerId = req.user._id;
   Restaurant.find({ owner: ownerId })
     .then(restaurants => res.render('restaurant/index', { restaurants }))
@@ -18,11 +20,12 @@ restaurantRouter.get('/', (req, res, next) => {
 });
 
 //create by zomato ID
-restaurantRouter.get('/createByZomatoId', (req, res) => {
+restaurantRouter.get('/createByZomatoId', routeGuardResOwner, (req, res) => {
+  console.log(req.user);
   res.render('restaurant/createByZomatoId');
 });
 
-restaurantRouter.post('/createByZomatoId', routeGuard, (req, res, next) => {
+restaurantRouter.post('/createByZomatoId',(req, res, next) => {
   const ownerId = req.user;
   const zomatoRestaurantId = req.body.zomatoId;
   zomato
@@ -49,7 +52,8 @@ restaurantRouter.post('/createByZomatoId', routeGuard, (req, res, next) => {
 });
 
 //manually
-restaurantRouter.get('/create', (req, res) => {
+restaurantRouter.get('/create', routeGuardResOwner, (req, res) => {
+  console.log(routeGuardResOwner);
   res.render('restaurant/create');
 });
 

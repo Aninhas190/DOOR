@@ -5,7 +5,6 @@ const mongoose = require('mongoose');
 const schema = new mongoose.Schema({
   name: {
     type: String,
-    unique: true,
     trim: true
   },
   email: {
@@ -40,7 +39,7 @@ const schema = new mongoose.Schema({
   ],
   userType: {
     type: String,
-    enum: ['foodie', 'restaurantOwner']
+    enum: ['foodie', 'restaurantOwner', 'admin']
   }
 });
 

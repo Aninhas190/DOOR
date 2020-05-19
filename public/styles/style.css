@@ -76,7 +76,7 @@ textarea {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: url("./../images/main-page-1.jpg") no-repeat center/100%;
+  background: url("./../images/main-page.jpg") no-repeat center/100%;
   height: 90vh; }
   .main-page h1 {
     background-color: rgba(0, 0, 0, 0.2);
@@ -127,5 +127,10 @@ textarea {
   flex-direction: column;
   align-items: center;
   justify-content: center; }
+
+.restaurant-index a {
+  margin-left: 1em;
+  background-color: #ffd800;
+  padding: 1em 2em; }
 
 /*# sourceMappingURL=style.css.map */
