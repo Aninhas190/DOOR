@@ -12,6 +12,7 @@ userRouter.get('/', (req, res, next) => {
 });
 
 // Route to create allergy list
+
 userRouter.get('/edit', (req, res, next) => {
   res.render('foodie/edit');
 });
@@ -24,7 +25,6 @@ userRouter.post('/edit', (req, res, next) => {
     })
     .catch((error) => next(error));
 });
-
 
 
 module.exports = userRouter;
