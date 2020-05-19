@@ -14,7 +14,7 @@ restaurantRouter.get('/', (req, res, next) => {
   res.render('restaurant/index');
 });
 
-//by zomato ID
+//create by zomato ID
 restaurantRouter.get('/createByZomatoId', (req, res, next) => {
   res.render('restaurant/createByZomatoId');
 }); 
@@ -60,7 +60,7 @@ restaurantRouter.post('/create', (req, res, next) => {
     contact,
     owner: ownerId
   })
-    .then(restaurant => res.render('restaurant/restaurant', {restaurant}))
+    .then(restaurant => res.render('restaurant/index', {restaurant}))
     .catch(error=> next(error));
 });
 
