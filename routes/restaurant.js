@@ -11,7 +11,10 @@ const Zomato = require('zomato.js');
 const zomato = new Zomato(ZOMATO_API_KEY);
 
 restaurantRouter.get('/', (req, res) => {
-  res.render('restaurant/index');
+  const ownerId = req.user._id;
+  Restaurant.find({ owner: ownerId })
+    .then((restaurants) => res.render('restaurant/index', { restaurants }))
+    .catch((error) => next(error));
 });
 
 //create by zomato ID
@@ -84,7 +87,7 @@ restaurantRouter.get('/:restaurantId', (req, res, next) => {
 // Create menu for single restaurant
 restaurantRouter.post('/:restaurantId/menu', (req, res, next) => {
   const ownerId = req.user;
-  const { name, description, latitute, longitude, cuisineType, contact } = req.body;
+  const { name, description, latitute, longitude, cuisineType, contact, menuExists } = req.body;
   Restaurant.create({
     name,
     description,
@@ -92,6 +95,7 @@ restaurantRouter.post('/:restaurantId/menu', (req, res, next) => {
     longitude,
     cuisineType,
     contact,
+    menuExists,
     owner: ownerId
   })
     .then((restaurant) => res.render('restaurant/index', { restaurant }))

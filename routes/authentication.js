@@ -56,9 +56,14 @@ authenticationRouter.post('/log-in', (req, res, next) => {
       }
     })
     .then((result) => {
-      if (result) {
-        req.session.user = user._id;
-        res.redirect('/private');
+      req.session.user = user;
+      console.log('user type', user.userType);
+      if (result && user.userType === 'foodie') {
+        console.log('condition true');
+        res.redirect('/foodie');
+      } else if (result && user.userType === 'restaurantOwner') {
+        console.log('condition false');
+        res.redirect('/restaurant');
       } else {
         return Promise.reject(new Error('Wrong password.'));
       }

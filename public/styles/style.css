@@ -15,7 +15,8 @@ a {
 
 nav {
   background-color: #ffd800;
-  display: flex; }
+  display: flex;
+  flex-direction: row; }
   nav a,
   nav button {
     color: #000;
@@ -73,12 +74,7 @@ textarea {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-<<<<<<< HEAD
-  background: url("./../images/main-page.jpg") no-repeat;
-  background-size: c;
-=======
   background: url("./../images/main-page-1.jpg") no-repeat center/100%;
->>>>>>> 00dc3c787959feb81fc9586db8c252d01a355de3
   height: 90vh; }
   .main-page h1 {
     background-color: rgba(0, 0, 0, 0.2);

@@ -11,6 +11,7 @@
     <nav>
       <a href="/">Home</a>
       {{#if user}}
+      <div class="testNav">
         <form action="/authentication/sign-out" method="POST">
         <a href="/authentication/private">{{ user.name }}'s Profile</a>
         <button>Sign Out</button>
@@ -18,6 +19,7 @@
         {{else}}
         <a href="/authentication/log-in">Log In</a>
         <a href="/authentication/sign-up">Sign Up</a>
+        </div>
       {{/if}}
     </nav>
     {{{body}}}
