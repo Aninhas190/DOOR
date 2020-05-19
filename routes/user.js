@@ -8,7 +8,7 @@ const User = require('./../models/user');
 
 // Route to view
 userRouter.get('/', (req, res, next) => {
-  res.render('foodie/foodie');
+  res.render('foodie/index');
 });
 
 // Route to create allergy list
@@ -19,12 +19,11 @@ userRouter.get('/edit', (req, res, next) => {
 
 userRouter.post('/edit', (req, res, next) => {
   const allergies = req.body.allergies;
-  User.updateOne({ allergies})
+  User.updateOne({ allergies })
     .then((user) => {
       res.redirect('/');
     })
     .catch((error) => next(error));
 });
-
 
 module.exports = userRouter;

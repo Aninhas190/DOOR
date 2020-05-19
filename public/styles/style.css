@@ -17,7 +17,8 @@ nav {
   margin: 0 auto;
   background-color: #ffd800;
   display: flex;
-  text-align: center; }
+  text-align: center; 
+}
   nav a,
   nav button {
     color: #000;

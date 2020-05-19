@@ -130,7 +130,10 @@ const RestaurantSchema = new mongoose.Schema({
   averagePrice: {
     type: Number
   },
-
+  menuExists: {
+    type: Boolean,
+    default: false
+  },
   menu: {
     dishName: {
       type: String
