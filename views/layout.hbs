@@ -11,9 +11,9 @@
     <nav>
       <a href="/">Home</a>
       {{#if user}}
+      <a href="/authentication/private">{{ user.name }}'s Profile</a>
       <div class="testNav">
         <form action="/authentication/sign-out" method="POST">
-        <a href="/authentication/private">{{ user.name }}'s Profile</a>
         <button>Sign Out</button>
         </form>
         {{else}}

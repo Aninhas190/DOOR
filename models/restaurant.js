@@ -125,7 +125,7 @@ const RestaurantSchema = new mongoose.Schema({
     }
   ],
   contact: {
-    type: Number
+    type: String || Number
   },
   averagePrice: {
     type: Number

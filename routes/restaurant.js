@@ -2,18 +2,18 @@
 
 const { Router } = require('express');
 const restaurantRouter = new Router();
-const ZOMATO_API_KEY = process.env.ZOMATO_API_KEY;
 
 const routeGuard = require('./../middleware/route-guard.js');
 
 const Restaurant = require('./../models/restaurant');
+const ZOMATO_API_KEY = process.env.ZOMATO_API_KEY;
 const Zomato = require('zomato.js');
 const zomato = new Zomato(ZOMATO_API_KEY);
 
-restaurantRouter.get('/', (req, res) => {
+restaurantRouter.get('/', (req, res, next) => {
   const ownerId = req.user._id;
   Restaurant.find({ owner: ownerId })
-    .then((restaurants) => res.render('restaurant/index', { restaurants }))
+    .then(restaurants => res.render('restaurant/index', { restaurants }))
     .catch((error) => next(error));
 });
 
@@ -27,9 +27,10 @@ restaurantRouter.post('/createByZomatoId', routeGuard, (req, res, next) => {
   const zomatoRestaurantId = req.body.zomatoId;
   zomato
     .restaurant({ res_id: zomatoRestaurantId })
-    .then((restaurantData) => {
+    .then(restaurantData => {
       const longitude = parseFloat(restaurantData.location.longitude);
       const latitude = parseFloat(restaurantData.location.latitude);
+      console.log(restaurantData);
       return Restaurant.create({
         name: restaurantData.name,
         location: {
@@ -39,7 +40,7 @@ restaurantRouter.post('/createByZomatoId', routeGuard, (req, res, next) => {
         averagePrice: restaurantData.average_cost_for_two,
         contact: restaurantData.phone_numbers.split(' ').join(''),
         owner: ownerId
-      }).then((restaurant) => {
+      }).then(restaurant => {
         console.log(restaurant);
         res.render('restaurant/index', { restaurant });
       });
@@ -59,14 +60,7 @@ restaurantRouter.post('/create', (req, res, next) => {
     name,
     description,
     location: {
-      coordinates: [
-        {
-          latitude: latitude
-        },
-        {
-          longitude: longitude
-        }
-      ]
+      coordinates: [latitude, longitude]
     },
     cuisineType,
     contact,
