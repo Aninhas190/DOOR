@@ -41,12 +41,6 @@ const schema = new mongoose.Schema(
       type: String,
       enum: ['foodie', 'restaurantOwner']
     }
-  },
-  {
-    timestamps: {
-      createdAt: 'createdDate',
-      updatedAt: 'updatedDate'
-    }
   }
 );
 
