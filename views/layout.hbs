@@ -11,7 +11,6 @@
     <nav>
       <a href="/">Home</a>
       {{#if user}}
-        <!-- <a href="/">{{user.name}}'s Profile</a> -->
         <form action="/authentication/sign-out" method="POST">
         <a href="/authentication/private">{{  user.name }}'s Profile</a>
         <button>Sign Out</button>
