@@ -81,4 +81,21 @@ restaurantRouter.get('/:restaurantId', (req, res, next) => {
     .catch((error) => next(error));
 });
 
+// Create menu for single restaurant
+restaurantRouter.post('/:restaurantId/menu', (req, res, next) => {
+  const ownerId = req.user;
+  const { name, description, latitute, longitude, cuisineType, contact } = req.body;
+  Restaurant.create({
+    name,
+    description,
+    latitute,
+    longitude,
+    cuisineType,
+    contact,
+    owner: ownerId
+  })
+    .then((restaurant) => res.render('restaurant/index', { restaurant }))
+    .catch((error) => next(error));
+});
+
 module.exports = restaurantRouter;

@@ -14,7 +14,7 @@ a {
   text-decoration: none; }
 
 nav {
-  background-color: #FFD800;
+  background-color: #ffd800;
   display: flex; }
   nav a,
   nav button {
@@ -72,7 +72,7 @@ textarea {
   align-items: center;
   justify-content: center;
   background: url("./../images/main-page.jpg") no-repeat;
-  background-size: cover;
+  background-size: c;
   height: 90vh; }
   .main-page h1 {
     font-size: 6em;

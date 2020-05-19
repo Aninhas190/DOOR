@@ -24,7 +24,7 @@ a {
 }
 
 nav {
-  background-color: #FFD800;
+  background-color: #ffd800;
   display: flex;
   a,
   button {
@@ -79,7 +79,7 @@ textarea {
   resize: vertical;
 }
 
-.main-page{
+.main-page {
   margin: 0;
   color: white;
   display: flex;
@@ -87,9 +87,9 @@ textarea {
   align-items: center;
   justify-content: center;
   background: url('./../images/main-page.jpg') no-repeat;
-  background-size: cover;
+  background-size: c;
   height: 90vh;
-  h1{
+  h1 {
     font-size: 6em;
     padding: 0 1rem;
     border: 3px white solid;
