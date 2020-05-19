@@ -30,7 +30,7 @@ const RestaurantSchema = new mongoose.Schema({
   },
   cuisineType: [
     {
-      type: String,
+      type: Array,
       enum: [
         'Alentejana',
         'American',

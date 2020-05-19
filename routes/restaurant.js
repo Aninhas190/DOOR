@@ -12,22 +12,37 @@ const Zomato = require('zomato.js');
 const zomato = new Zomato(ZOMATO_API_KEY);
 
 restaurantRouter.get('/', (req, res, next) => {
-  res.render('restaurant/restaurant');
+  res.render('restaurant/index');
 });
+
 //by zomato ID
 restaurantRouter.get('/createByZomatoId', (req, res, next) => {
   res.render('restaurant/createByZomatoId');
 }); 
 
-restaurantRouter.get('/createByZomatoId', (req, res, next) => {
-  //const restaurantId = req.body.zomatoId;
-  console.log(req.body);
-  /*zomato.restaurant({res_id: restaurantId})
-  .then(data => {
-    console.log(data);
-  })
-  .catch(error => next(error));*/
-  res.redirect('/');
+restaurantRouter.post('/createByZomatoId', routeGuard, (req, res, next) => {
+  const ownerId = req.user;
+  const restaurantId = req.body.zomatoId;
+  zomato
+    .restaurant({res_id: restaurantId})
+    .then(restaurantData => {
+      return Restaurant.create({
+        name: restaurantData.name,
+        location: {
+          latitude: restaurantData.location.latitude,
+          longitude: restaurantData.location.longitude
+        },
+        cuisineType: restaurantData.cuisines,
+        averagePrice: restaurantData.average_cost_for_two,
+        contact: restaurantData.phone_numbers.split(' ').join(''),
+        owner: ownerId
+      })
+      .then(restaurant => {
+        console.log(restaurant);
+        res.render('restaurant/index', {restaurant});
+      });
+    })
+    .catch(error => next(error));
 }); 
 
 //manually
