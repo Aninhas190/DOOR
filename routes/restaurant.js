@@ -28,11 +28,12 @@ restaurantRouter.post('/createByZomatoId', routeGuard, (req, res, next) => {
   zomato
     .restaurant({ res_id: zomatoRestaurantId })
     .then((restaurantData) => {
+      const longitude = parseFloat(restaurantData.location.longitude);
+      const latitude = parseFloat(restaurantData.location.latitude);
       return Restaurant.create({
         name: restaurantData.name,
         location: {
-          latitude: restaurantData.location.latitude,
-          longitude: restaurantData.location.longitude
+          coordinates: [latitude, longitude]
         },
         cuisineType: restaurantData.cuisines,
         averagePrice: restaurantData.average_cost_for_two,
@@ -53,17 +54,28 @@ restaurantRouter.get('/create', (req, res) => {
 
 restaurantRouter.post('/create', (req, res, next) => {
   const ownerId = req.user;
-  const { name, description, latitute, longitude, cuisineType, contact } = req.body;
+  const { name, description, latitude, longitude, cuisineType, contact } = req.body;
   Restaurant.create({
     name,
     description,
-    latitute,
-    longitude,
+    location: {
+      coordinates: [
+        {
+          latitude: latitude
+        },
+        {
+          longitude: longitude
+        }
+      ]
+    },
     cuisineType,
     contact,
     owner: ownerId
   })
-    .then((restaurant) => res.render('restaurant/index', { restaurant }))
+    .then((restaurant) => {
+      console.log(restaurant);
+      res.render('restaurant/index', { restaurant });
+    })
     .catch((error) => next(error));
 });
 
