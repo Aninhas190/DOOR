@@ -78,7 +78,6 @@ restaurantRouter.get('/create', routeGuardResOwner, (req, res) => {
 });
 
 restaurantRouter.post('/create', uploader.single('image'), (req, res, next) => {
-  console.log(req.file);
   const ownerId = req.user;
   const { name, description, latitude, longitude, cuisineType, contact } = req.body;
   const image = req.file.url;
