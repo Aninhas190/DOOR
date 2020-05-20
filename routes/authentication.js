@@ -77,7 +77,7 @@ authenticationRouter.post('/sign-up', (req, res, next) => {
 
 authenticationRouter.get('/confirm/:confirmationCode', (req, res) => {
   const confirmationCodeReturned = req.params.confirmationCode;
-  console.log('req.user', req.body);
+  console.log('req.user', req.user);
   res.render('index');
   if (confirmationCodeReturned === user.confirmationCode) {
     user.status = 'active';
