@@ -1,3 +1,8 @@
 <section class="container">
     <p>Restaurant's {{name}} Menu</p>
+
+    {{#each restMenu}}
+        <h5>{{dishName}}</h5>
+        <p>{{allergies}}</p>
+    {{/each}}
 </section>

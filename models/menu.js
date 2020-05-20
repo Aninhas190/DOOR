@@ -2,20 +2,16 @@
 
 const mongoose = require('mongoose');
 
-const schema = new mongoose.Schema({
-  name: {
-    type: String,
-    trim: true
+
+
+const MenuSchema = new mongoose.Schema({
+  restaurantId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Restaurant'
   },
-  email: {
+  dishName: {
     type: String,
-    unique: true,
-    required: true,
-    lowercase: true,
-    trim: true
-  },
-  passwordHash: {
-    type: String
+    required: true
   },
   allergies: [
     {
@@ -39,10 +35,9 @@ const schema = new mongoose.Schema({
       ]
     }
   ],
-  userType: {
-    type: String,
-    enum: ['foodie', 'restaurantOwner', 'admin']
-  }
+  dishDescription: String
 });
 
-module.exports = mongoose.model('User', schema);
+const Menu = mongoose.model('Menu', MenuSchema);
+
+module.exports = Menu;
