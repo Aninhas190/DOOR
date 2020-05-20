@@ -26,14 +26,7 @@ const restaurantRouter = require('./routes/restaurant');
 const app = express();
 
 // Nodemailer
-const nodemailer = require('nodemailer');
-const transporter = nodemailer.createTransport({
-  service: 'Gmail',
-  auth: {
-    user: process.env.NODEMAILER_EMAIL,
-    pass: process.env.NODEMAILER_PASSWORD
-  }
-});
+
 
 app.set('views', join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -82,22 +75,7 @@ app.use('/foodie', userRouter);
 app.use('/restaurant', restaurantRouter);
 
 // Nodemailer
-transporter
-  .sendMail({
-    from: `Demo App <${process.env.NODEMAILER_EMAIL}>`,
-    to: 'lpf202005@gmail.com',
-    subject: 'DOOR website - Verify your e-mail',
-    html:
-      'To complete the sign-up process, click here to <a href="http://localhost:3000">verify your email</a>'
-  })
-  .then((result) => {
-    console.log('Email was sent successfully.');
-    console.log(result);
-  })
-  .catch((error) => {
-    console.log('There was an error sending the email.');
-    console.log(error);
-  });
+
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {

@@ -9,6 +9,15 @@ const authenticationRouter = new Router();
 
 const routeGuard = require('../middleware/route-guard');
 
+const nodemailer = require('nodemailer');
+const transporter = nodemailer.createTransport({
+  service: 'Gmail',
+  auth: {
+    user: process.env.NODEMAILER_EMAIL,
+    pass: process.env.NODEMAILER_PASSWORD
+  }
+});
+
 authenticationRouter.get('/sign-up', (req, res) => {
   res.render('sign-up');
 });
@@ -23,6 +32,24 @@ authenticationRouter.post('/sign-up', (req, res, next) => {
         email,
         passwordHash: hash,
         userType
+      });
+    })
+    .then(user => {
+      return transporter
+      .sendMail({
+        from: `Demo App <${process.env.NODEMAILER_EMAIL}>`,
+        to: user.email,
+        subject: 'DOOR website - Verify your e-mail',
+        html:
+          'To complete the sign-up process, click here to <a href="http://localhost:3000">verify your email</a>'
+      })
+      .then((result) => {
+        console.log('Email was sent successfully.');
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log('There was an error sending the email.');
+        console.log(error);
       });
     })
     .then((user) => {
