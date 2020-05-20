@@ -1,17 +1,18 @@
 <div id="map-container"></div>
 
-<section class="container">
-    <h1>Restaurants List</h1>
-    <ul>
+<h1>Restaurants List</h1>
+
+<section class="restaurantList">
     {{#each restaurants}}
-        <li>
-            <a href="{{_id}}">{{name}}</a>
+        <article class ="restaurantCard">
+            <h4>
+                <a href="{{_id}}">{{name}}</a>
+            </h4>
+            <img src="{{image}}" alt="image"/>
             <p>{{cuisineType}}</p>
-            <p>{{description}}</p>
             </br>
-        </li>
+        </article>
     {{/each}}
-    </ul>
 </section>
 
 <script>

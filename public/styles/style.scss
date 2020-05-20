@@ -238,3 +238,19 @@ footer {
   height: 60vh;
   width: 80vw;
 }
+
+.restaurantList {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.restaurantCard {
+  background-color: rgba($color: $color-olivine, $alpha: 0.3);
+  padding: 2em;
+  padding: 2em;
+
+  img {
+    max-width: 10em;
+  }
+}
