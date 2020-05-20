@@ -25,7 +25,6 @@ const restaurantRouter = require('./routes/restaurant');
 
 const app = express();
 
-// Nodemailer
 
 
 app.set('views', join(__dirname, 'views'));
