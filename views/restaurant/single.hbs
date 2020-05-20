@@ -1,15 +1,17 @@
-<section class="container">
+<section class="container restSingle">
+    
+    <img src="{{restaurant.image}}" alt="image"/>
     
     <h2>{{restaurant.name}}</h2>
     <p>
         <strong>Cuisine Type: </strong>
         {{restaurant.cuisineType}}
     </p>
-    <a href="/restaurant/{{restaurant._id}}/menu">View Menu</a>
     <p> 
         <strong>Restaurant Description:</strong>
         {{restaurant.description}}
     </p>
+    <a class ="restaurant-index" href="/restaurant/{{restaurant._id}}/menu">View Menu</a>
 
     <div id="map-container"></div>
 

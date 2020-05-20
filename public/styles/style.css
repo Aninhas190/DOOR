@@ -5,9 +5,14 @@ body {
   max-width: 100vw;
   font-family: sans-serif;
   font-family: "Noto Sans", sans-serif;
-  line-height: 2; }
-  body .container {
-    margin: 2em; }
+  line-height: 2;
+  margin: 0 auto; }
+
+.container {
+  width: 100%;
+  left: auto;
+  right: auto;
+  margin: 2em; }
 
 a {
   color: #000000;
@@ -124,15 +129,9 @@ textarea {
   align-items: center; }
   .index-last-section .box:first-child {
     margin-right: 3em; }
-  .index-last-section a {
-    margin-top: 2em;
-    background-color: #ffdf64;
-    padding: 1em 2em;
-    border: 1px solid white;
-    border-radius: 3px;
-    font-weight: 700; }
 
-.card {
+.box {
+  padding: 3em 2em;
   background-color: rgba(175, 201, 126, 0.3);
   border-radius: 3px;
   width: 20em;
@@ -143,27 +142,25 @@ textarea {
   align-items: center;
   justify-content: center;
   text-align: center;
-  position: relative;
-  padding: 2em;
-  margin: 2em; }
-  .card img {
-    max-width: 10em; }
-  .card .items-inside-card {
-    position: absolute;
-    top: 1em; }
-  .card a {
-    position: absolute;
-    bottom: 1em;
-    background-color: #ffdf64;
-    color: 000; }
-  .card a:hover {
-    text-decoration: none;
-    color: white; }
+  position: relative; }
 
-.restaurant-index a {
-  margin-left: 1em;
+.items-inside-box {
+  position: absolute;
+  top: 1em; }
+
+.href-as-yellow-button {
+  margin-top: 2em;
   background-color: #ffdf64;
-  padding: 1em 2em; }
+  padding: 1em;
+  border: 1px solid white;
+  border-radius: 3px;
+  font-weight: 700;
+  position: absolute;
+  bottom: 1em; }
+
+.href-as-yellow-button:hover {
+  text-decoration: none;
+  color: white; }
 
 footer {
   left: 0px;
@@ -192,9 +189,36 @@ footer {
 
 .restaurantCard {
   background-color: rgba(175, 201, 126, 0.3);
+  border-radius: 3px;
+  width: 20em;
+  height: 40vh;
+  width: 40vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
   padding: 2em;
   margin: 2em; }
   .restaurantCard img {
-    max-width: 10em; }
+    max-width: 10em;
+    position: absolute;
+    top: 1em;
+    border: 1px solid #afc97e; }
+  .restaurantCard .items-inside-card {
+    position: absolute;
+    bottom: 1em; }
+
+.restSingle {
+  display: block;
+  margin-left: auto;
+  margin-right: auto; }
+  .restSingle #map-container,
+  .restSingle img {
+    display: block;
+    margin-left: 0;
+    margin-right: auto;
+    width: 100%; }
 
 /*# sourceMappingURL=style.css.map */

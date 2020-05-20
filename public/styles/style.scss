@@ -25,9 +25,14 @@ body {
   font-family: sans-serif;
   font-family: $font-sans;
   line-height: 2;
-  .container {
-    margin: 2em;
-  }
+  margin: 0 auto;
+}
+
+.container {
+  width: 100%;
+  left: auto;
+  right: auto;
+  margin: 2em;
 }
 
 a {
@@ -166,18 +171,18 @@ textarea {
   .box:first-child {
     margin-right: 3em;
   }
-  a {
-    margin-top: 2em;
-    background-color: $color-yellow;
-    padding: 1em 2em;
-    border: 1px solid white;
-    border-radius: 3px;
-    font-weight: 700;
-  }
+  // a {
+  //   margin-top: 2em;
+  //   background-color: $color-yellow;
+  //   padding: 1em 2em;
+  //   border: 1px solid white;
+  //   border-radius: 3px;
+  //   font-weight: 700;
+  // }
 }
 
-.card {
-  // padding: 3em 2em;
+.box {
+  padding: 3em 2em;
   background-color: rgba($color: $color-olivine, $alpha: 0.3);
   border-radius: 3px;
   width: 20em;
@@ -189,38 +194,27 @@ textarea {
   justify-content: center;
   text-align: center;
   position: relative;
-  padding: 2em;
-  margin: 2em;
-
-  img {
-    max-width: 10em;
-  }
-
-  .items-inside-card {
-    position: absolute;
-    top: 1em;
-  }
-
-  a {
-    position: absolute;
-    bottom: 1em;
-    background-color: $color-yellow;
-    // text-decoration: none;
-    color: 000;
-  }
-
-  a:hover {
-    text-decoration: none;
-    color: white;
-  }
 }
 
-.restaurant-index {
-  a {
-    margin-left: 1em;
-    background-color: $color-yellow;
-    padding: 1em 2em;
-  }
+.items-inside-box {
+  position: absolute;
+  top: 1em;
+}
+
+.href-as-yellow-button {
+  margin-top: 2em;
+  background-color: $color-yellow;
+  padding: 1em;
+  border: 1px solid white;
+  border-radius: 3px;
+  font-weight: 700;
+  position: absolute;
+  bottom: 1em;
+}
+
+.href-as-yellow-button:hover {
+  text-decoration: none;
+  color: white;
 }
 
 footer {
@@ -253,10 +247,42 @@ footer {
 
 .restaurantCard {
   background-color: rgba($color: $color-olivine, $alpha: 0.3);
+  border-radius: 3px;
+  width: 20em;
+  height: 40vh;
+  width: 40vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
   padding: 2em;
   margin: 2em;
 
   img {
     max-width: 10em;
+    position: absolute;
+    top: 1em;
+    border: 1px solid $color-olivine;
+  }
+
+  .items-inside-card {
+    position: absolute;
+    bottom: 1em;
+  }
+}
+
+.restSingle {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+  #map-container,
+  img {
+    display: block;
+    margin-left: 0;
+    margin-right: auto;
+    width: 100%;
   }
 }
