@@ -39,7 +39,6 @@ restaurantRouter.get('/', routeGuardResOwner, (req, res, next) => {
 
 //create by zomato ID
 restaurantRouter.get('/createByZomatoId', routeGuardResOwner, (req, res) => {
-  console.log(req.user);
   res.render('restaurant/createByZomatoId');
 });
 
@@ -47,8 +46,9 @@ restaurantRouter.post('/createByZomatoId', (req, res, next) => {
   const ownerId = req.user;
   const zomatoRestaurantId = req.body.zomatoId;
   zomato
-    .restaurant({ res_id: zomatoRestaurantId })
-    .then((restaurantData) => {
+  .restaurant({ res_id: zomatoRestaurantId })
+  .then((restaurantData) => {
+      const image = restaurantData.thumb.split('?').splice(0,1);
       const longitude = parseFloat(restaurantData.location.longitude);
       const latitude = parseFloat(restaurantData.location.latitude);
       console.log(restaurantData);
@@ -57,6 +57,7 @@ restaurantRouter.post('/createByZomatoId', (req, res, next) => {
         location: {
           coordinates: [latitude, longitude]
         },
+        image: image[0],
         cuisineType: restaurantData.cuisines,
         averagePrice: restaurantData.average_cost_for_two,
         contact: restaurantData.phone_numbers.split(' ').join(''),
