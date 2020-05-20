@@ -7,6 +7,7 @@ $color-olivine: #afc97e;
 $color-teagreen: #d4e6b5;
 $color-greyButton: #eae9e6;
 $color-shadow: rgba(135, 123, 102, 1);
+$color-footer: #fdfbf6;
 
 $font-sans: 'Noto Sans', sans-serif;
 $grey: hsla(0, 0, 75%, 0.5);
@@ -222,7 +223,7 @@ footer {
   right: 0px;
   padding: 0.5em;
   width: 100%;
-  background-color: #eaeaea;
+  background-color: $color-footer;
   color: black;
   text-align: right;
   font-size: smaller;

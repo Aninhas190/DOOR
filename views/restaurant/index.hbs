@@ -8,19 +8,18 @@
 <section class="container">
   <h1>Restaurant index page</h1>
 
-  <ul>
+  <article>
     {{#each restaurants}}
-    <li>
       <h3>
         <a href="/restaurant/{{_id}}">{{name}}</a>
       </h3>
+      <img src="" alt="">
       <p><strong>Cuisine Type: </strong>{{cuisineType}}</p>
-      <p><strong>Restaurant Description:</strong>{{description}}</p>
+      {{!-- <p><strong>Restaurant Description:</strong>{{description}}</p> --}}
       </br>
-    </li>
     <a href="/restaurant/{{_id}}/delete">Delete Restaurant</a>
     {{/each}}
-  </ul>
+  </article>
 
   <h2>Create new restaurant</h2>
 
