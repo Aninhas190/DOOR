@@ -176,8 +176,8 @@ textarea {
   }
 }
 
-.box {
-  padding: 3em 2em;
+.card {
+  // padding: 3em 2em;
   background-color: rgba($color: $color-olivine, $alpha: 0.3);
   border-radius: 3px;
   width: 20em;
@@ -189,8 +189,14 @@ textarea {
   justify-content: center;
   text-align: center;
   position: relative;
+  padding: 2em;
+  margin: 2em;
 
-  article {
+  img {
+    max-width: 10em;
+  }
+
+  .items-inside-card {
     position: absolute;
     top: 1em;
   }
@@ -248,7 +254,7 @@ footer {
 .restaurantCard {
   background-color: rgba($color: $color-olivine, $alpha: 0.3);
   padding: 2em;
-  padding: 2em;
+  margin: 2em;
 
   img {
     max-width: 10em;
