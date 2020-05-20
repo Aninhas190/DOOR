@@ -69,8 +69,8 @@ authenticationRouter.post('/log-in', (req, res, next) => {
     });
 });
 
-authenticationRouter.get('/private', routeGuard, (req, res) => {
-  res.render('private');
+authenticationRouter.get('/profile', routeGuard, (req, res) => {
+  res.render('profile');
 });
 
 authenticationRouter.post('/sign-out', (req, res) => {

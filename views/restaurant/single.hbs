@@ -1,4 +1,5 @@
 <section class="container">
+    
     <h2>{{restaurant.name}}</h2>
     <p>
         <strong>Cuisine Type: </strong>
@@ -9,11 +10,36 @@
         {{restaurant.description}}
     </p>
 
-    <p>
-        <strong>Coordenadas: </strong>
-        {{restaurant.location.coordinates.[0]}}
-        {{restaurant.location.coordinates.[1]}}
+    <div id="map-container"></div>
 
-    </p>
-    </br>
 </section>
+
+<script>
+    const restaurant = {{{ json restaurant }}};
+
+    const latitude = restaurant.location.coordinates[0];
+    const longitude = restaurant.location.coordinates[1];
+
+    function initMap() {
+        const $mapContainer = document.getElementById('map-container');
+        const map = new window.google.maps.Map($mapContainer, {
+            center: {lat: latitude, lng: longitude},
+            zoom: 11
+        });
+    
+
+        
+        const marker = new window.google.maps.Marker({
+            map,
+            position: { 
+                lat: latitude,
+                lng: longitude 
+            }
+        });
+            
+                       
+    }
+
+
+</script>
+{{> mapscript}}
