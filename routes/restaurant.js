@@ -17,6 +17,12 @@ const multer = require('multer');
 const cloudinary = require('cloudinary');
 const multerStorageCloudinary = require('multer-storage-cloudinary');
 
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+});
+
 const storage = multerStorageCloudinary({
   cloudinary,
   folder: 'door-restaurants-images'
@@ -24,13 +30,9 @@ const storage = multerStorageCloudinary({
 
 const uploader = multer({ storage });
 
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API,
-  api_secret: process.env.CLOUDINARY_SECRET
-});
 
-restaurantRouter.get('/', routeGuard, routeGuardResOwner, (req, res, next) => {
+
+restaurantRouter.get('/', routeGuardResOwner, (req, res, next) => {
   const ownerId = req.user._id;
   Restaurant.find({ owner: ownerId })
     .then((restaurants) => res.render('restaurant/index', { restaurants }))
