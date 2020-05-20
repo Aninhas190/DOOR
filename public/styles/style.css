@@ -32,6 +32,7 @@ nav {
   nav button {
     color: #624d01;
     padding: 1em 1em;
+    margin: 0;
     border: none; }
     nav a:not(:last-child),
     nav button:not(:last-child) {

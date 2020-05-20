@@ -56,6 +56,7 @@ nav {
   button {
     color: $color-href;
     padding: 1em 1em;
+    margin: 0;
     border: none;
     &:not(:last-child) {
       margin-right: 1em;
