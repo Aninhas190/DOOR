@@ -139,6 +139,14 @@ restaurantRouter.post('/:restaurantId/edit', routeGuardResOwner, (req, res, next
     .catch((error) => next(error));
 });
 
+restaurantRouter.get('/:restaurantId/addMenu', (req, res, next) => {
+  const restaurantId = req.params.restaurantId;
+  Restaurant.findById(restaurantId)
+    .then((restaurant) => res.render('restaurant/addMenu'))
+    .catch((error) => next(error));
+});
+
+
 //delete restaurant
 restaurantRouter.get('/:restaurantId/delete', (req, res, next) => {
   const restaurantId = req.params.restaurantId;
@@ -146,6 +154,9 @@ restaurantRouter.get('/:restaurantId/delete', (req, res, next) => {
     .then((restaurant) => res.redirect('/restaurant'))
     .catch((error) => next(error));
 });
+
+
+
 
 // View menu for single restaurant
 restaurantRouter.get('/:restaurantId/menu', (req, res, next) => {
