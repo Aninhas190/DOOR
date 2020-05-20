@@ -9,6 +9,8 @@ const authenticationRouter = new Router();
 
 const routeGuard = require('../middleware/route-guard');
 
+
+
 authenticationRouter.get('/sign-up', (req, res) => {
   res.render('sign-up');
 });
