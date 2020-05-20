@@ -15,10 +15,9 @@ const zomato = new Zomato(ZOMATO_API_KEY);
 restaurantRouter.get('/', routeGuard, routeGuardResOwner, (req, res, next) => {
   const ownerId = req.user._id;
   Restaurant.find({ owner: ownerId })
-    .then(restaurants => res.render('restaurant/index', { restaurants }))
+    .then((restaurants) => res.render('restaurant/index', { restaurants }))
     .catch((error) => next(error));
 });
-
 
 //create by zomato ID
 restaurantRouter.get('/createByZomatoId', routeGuardResOwner, (req, res) => {
@@ -26,12 +25,12 @@ restaurantRouter.get('/createByZomatoId', routeGuardResOwner, (req, res) => {
   res.render('restaurant/createByZomatoId');
 });
 
-restaurantRouter.post('/createByZomatoId',(req, res, next) => {
+restaurantRouter.post('/createByZomatoId', (req, res, next) => {
   const ownerId = req.user;
   const zomatoRestaurantId = req.body.zomatoId;
   zomato
     .restaurant({ res_id: zomatoRestaurantId })
-    .then(restaurantData => {
+    .then((restaurantData) => {
       const longitude = parseFloat(restaurantData.location.longitude);
       const latitude = parseFloat(restaurantData.location.latitude);
       console.log(restaurantData);
@@ -44,7 +43,7 @@ restaurantRouter.post('/createByZomatoId',(req, res, next) => {
         averagePrice: restaurantData.average_cost_for_two,
         contact: restaurantData.phone_numbers.split(' ').join(''),
         owner: ownerId
-      }).then(restaurant => {
+      }).then((restaurant) => {
         console.log(restaurant);
         res.render('restaurant/index', { restaurant });
       });
@@ -95,6 +94,22 @@ restaurantRouter.get('/:restaurantId', (req, res, next) => {
     .catch((error) => next(error));
 });
 
+//edit restaurant
+restaurantRouter.get('/:restaurantId/edit', routeGuardResOwner, (req, res, next) => {
+  const restaurantId = req.params.restaurantId;
+  Restaurant.findById(restaurantId)
+    .then((restaurant) => res.render('restaurant/edit', { restaurant }))
+    .catch((error) => next(error));
+});
+
+restaurantRouter.post('/:restaurantId/edit', routeGuardResOwner, (req, res, next) => {
+  const restaurantId = req.params.restaurantId;
+  Restaurant.findById(restaurantId)
+    .then((restaurant) => res.render('restaurant/edit', { restaurant }))
+    .catch((error) => next(error));
+});
+
+//delete restaurant
 restaurantRouter.get('/:restaurantId/delete', (req, res, next) => {
   const restaurantId = req.params.restaurantId;
   Restaurant.findByIdAndDelete(restaurantId)
