@@ -1,3 +1,4 @@
+<section class ="container" >
 <h1>Create your menu</h1>
 
 <form action="" method="post">
@@ -8,8 +9,10 @@
   <label for="dish-description-input">Dish Description</label>
   <textarea type="text" id="dish-description-input" name="dishDescription" placeholder="Dish description" /></textarea>
 
-   
-  {{> allergies}}
+  <div class ="display-allergies">
+    {{> allergies}} 
+  </div> 
 
-  <button>Submit dish</button>
+  <button class="btn">Submit dish</button>
 </form>
+</section>

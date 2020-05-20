@@ -8,6 +8,7 @@ $color-teagreen: #d4e6b5;
 $color-greyButton: #eae9e6;
 $color-shadow: rgba(135, 123, 102, 1);
 $color-footer: #fdfbf6;
+$color-href: #624d01;
 
 $font-sans: 'Noto Sans', sans-serif;
 $grey: hsla(0, 0, 75%, 0.5);
@@ -30,13 +31,14 @@ body {
 
 .container {
   width: 100%;
+  height: 100%;
   left: auto;
   right: auto;
   margin: 2em;
 }
 
 a {
-  color: #000000;
+  color: $color-href;
   text-decoration: none;
 }
 
@@ -52,7 +54,7 @@ nav {
   font-weight: bold;
   a,
   button {
-    color: #000;
+    color: $color-href;
     padding: 1em 1em;
     border: none;
     &:not(:last-child) {
@@ -107,7 +109,7 @@ select {
   border: 1px solid $grey;
   border-radius: 0;
   margin-bottom: 1em;
-  color: inherit;
+  color: $color-href;
   background-color: $color-greyButton;
   transition: transform 0.6s 0.25s ease-out;
 }
@@ -171,14 +173,23 @@ textarea {
   .box:first-child {
     margin-right: 3em;
   }
-  // a {
-  //   margin-top: 2em;
-  //   background-color: $color-yellow;
-  //   padding: 1em 2em;
-  //   border: 1px solid white;
-  //   border-radius: 3px;
-  //   font-weight: 700;
-  // }
+  .href-as-yellow-button {
+    text-align: center;
+    margin-top: 2em;
+    color: $color-href;
+    background-color: $color-yellow;
+    padding: 1em;
+    border: 1px solid white;
+    border-radius: 3px;
+    font-weight: 700;
+    position: absolute;
+    bottom: 1em;
+
+    .href-as-yellow-button:hover {
+      text-decoration: none;
+      color: white;
+    }
+  }
 }
 
 .box {
@@ -202,14 +213,14 @@ textarea {
 }
 
 .href-as-yellow-button {
-  margin-top: 2em;
+  text-align: center;
+  padding: 1em;
+  color: $color-href;
   background-color: $color-yellow;
   padding: 1em;
   border: 1px solid white;
   border-radius: 3px;
   font-weight: 700;
-  position: absolute;
-  bottom: 1em;
 }
 
 .href-as-yellow-button:hover {
@@ -218,6 +229,7 @@ textarea {
 }
 
 footer {
+  position: fixed;
   left: 0px;
   bottom: 0px;
   right: 0px;
@@ -285,4 +297,52 @@ footer {
     margin-right: auto;
     width: 100%;
   }
+}
+
+.restaurantIndex {
+  padding: 2em;
+  margin: 3em;
+  border: 1px solid $color-teagreen;
+
+  .href-3-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    // padding: 1em;
+  }
+}
+
+.restaurant-index {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+
+  img {
+    padding-bottom: 2em;
+  }
+}
+
+.href-as-green-button {
+  text-align: center;
+  margin: 2em;
+  width: 25em;
+  color: $color-href;
+  background-color: $color-teagreen;
+  padding: 1em;
+  border: 1px solid white;
+  color: #624d01;
+  border-radius: 3px;
+  font-weight: 700;
+}
+
+.href-as-green-button:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.display-allergies {
+  flex-wrap: wrap;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
