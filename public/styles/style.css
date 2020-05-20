@@ -152,8 +152,12 @@ textarea {
     text-decoration: none;
     color: white; }
 
+.restaurant-index a {
+  margin-left: 1em;
+  background-color: #ffd800;
+  padding: 1em 2em; }
+
 footer {
-  position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
@@ -163,9 +167,13 @@ footer {
   padding: 1em;
   font-size: smaller; }
 
-.restaurant-index a {
-  margin-left: 1em;
-  background-color: #ffd800;
-  padding: 1em 2em; }
+#map-container {
+  margin-top: 3em;
+  margin-left: 9em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+  width: 80vw; }
 
 /*# sourceMappingURL=style.css.map */

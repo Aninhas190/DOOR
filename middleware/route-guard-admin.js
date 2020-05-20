@@ -1,6 +1,5 @@
 'use strict';
 
-
 module.exports = (req, res, next) => {
   if (req.user && req.user.userType === 'admin') {
     next();
