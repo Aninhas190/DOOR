@@ -16,7 +16,6 @@
 
 <script>
     const restaurants = {{{ json restaurants }}};
-    console.log(restaurants[0].location.coordinates[0]);
 
     function initMap() {
         const $mapContainer = document.getElementById('map-container');
@@ -29,7 +28,6 @@
         const markers = [];
 
         for (let restaurant of restaurants) {
-            console.log(restaurant.location.coordinates[0]);
             const marker = new window.google.maps.Marker({
                 map,
                 position: { 
@@ -37,7 +35,11 @@
                     lng: restaurant.location.coordinates[1] 
                 }
             });
-
+            
+            marker.addListener('click', () => {
+                const restaurantSingle = `/restaurant/${restaurant._id}`;
+                window.location = restaurantSingle;
+            })
             markers.push(marker);
         }
 

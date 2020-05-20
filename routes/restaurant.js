@@ -19,6 +19,7 @@ restaurantRouter.get('/', routeGuard, routeGuardResOwner, (req, res, next) => {
     .catch((error) => next(error));
 });
 
+
 //create by zomato ID
 restaurantRouter.get('/createByZomatoId', routeGuardResOwner, (req, res) => {
   console.log(req.user);
@@ -91,6 +92,13 @@ restaurantRouter.get('/:restaurantId', (req, res, next) => {
   const restaurantId = req.params.restaurantId;
   Restaurant.findById(restaurantId)
     .then((restaurant) => res.render('restaurant/single', { restaurant }))
+    .catch((error) => next(error));
+});
+
+restaurantRouter.get('/:restaurantId/delete', (req, res, next) => {
+  const restaurantId = req.params.restaurantId;
+  Restaurant.findByIdAndDelete(restaurantId)
+    .then((restaurant) => res.redirect('/restaurant'))
     .catch((error) => next(error));
 });
 
