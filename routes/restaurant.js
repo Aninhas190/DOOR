@@ -104,10 +104,21 @@ restaurantRouter.get('/:restaurantId/edit', routeGuardResOwner, (req, res, next)
 
 restaurantRouter.post('/:restaurantId/edit', routeGuardResOwner, (req, res, next) => {
   const restaurantId = req.params.restaurantId;
-  Restaurant.findById(restaurantId)
-    .then((restaurant) => res.render('restaurant/edit', { restaurant }))
+  const { name, description, latitude, longitude, cuisineType, contact } = req.body;
+  Restaurant.findByIdAndUpdate(restaurantId, {
+    name,
+    description,
+    location: {
+      coordinates: [latitude, longitude]
+    },
+    cuisineType,
+    contact
+  })
+    .then((restaurant) => res.redirect('/restaurant'))
     .catch((error) => next(error));
 });
+
+
 
 //delete restaurant
 restaurantRouter.get('/:restaurantId/delete', (req, res, next) => {
@@ -117,21 +128,12 @@ restaurantRouter.get('/:restaurantId/delete', (req, res, next) => {
     .catch((error) => next(error));
 });
 
-// Create menu for single restaurant
-restaurantRouter.post('/:restaurantId/menu', (req, res, next) => {
-  const ownerId = req.user;
-  const { name, description, latitute, longitude, cuisineType, contact, menuExists } = req.body;
-  Restaurant.create({
-    name,
-    description,
-    latitute,
-    longitude,
-    cuisineType,
-    contact,
-    menuExists,
-    owner: ownerId
-  })
-    .then((restaurant) => res.render('restaurant/index', { restaurant }))
+
+// View menu for single restaurant
+restaurantRouter.get('/:restaurantId/menu', (req, res, next) => {
+  const restaurantId = req.params.restaurantId;
+  Restaurant.findById(restaurantId)
+    .then((restaurant) => res.render('restaurant/menu', { restaurant }))
     .catch((error) => next(error));
 });
 

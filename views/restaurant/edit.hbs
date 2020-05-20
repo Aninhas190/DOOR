@@ -1,16 +1,17 @@
+{{#with restaurant}}
 <form class="container" method="POST">
 
   <label for="input-restaurant-name">Restaurant Name</label>
-  <input type="text" id="input-restaurant-name" name="name" required placeholder="Restaurant Name" />
+  <input type="text" id="input-restaurant-name" value="{{name}}" name="name" required placeholder="Restaurant Name" />
 
   <label for="input-image">Restaurant Image</label>
   <input type="file" id="input-image" name="image" placeholder="Restaurant Image" />
 
   <label for="input-location-latitute">Location Latitute</label>
-  <input type="text" name="latitude" id="input-location-latitute" required placeholder="Restaurant Latitude" />
+  <input type="text" name="latitude" id="input-location-latitute" required value="{{location.coordinates.[0]}}" placeholder="Restaurant Latitude" />
 
   <label for="input-location-longitude">Location Latitute</label>
-  <input type="text" name="longitude" id="input-location-longitude" required placeholder="Restaurant Longitude" />
+  <input type="text" name="longitude" id="input-location-longitude" required value="{{location.coordinates.[1]}}"placeholder="Restaurant Longitude" />
 
   <label for="input-restaurant-cuisine-type">Cuisine Type</label>
   <select name="cuisineType" multiple size="3">
@@ -107,11 +108,12 @@
   </select>
 
   <label for="input-restaurant-description">Description</label>
-  <textarea type="text" id="input-restaurant-description" name="description" required placeholder="Restaurant Description"></textarea>
+  <textarea type="text" id="input-restaurant-description" name="description" value="{{description}}" required placeholder="Restaurant Description"></textarea>
 
   <label for="input-restaurant-contact">Restaurant Phone Number</label>
-  <input type="tel" id="input-restaurant-contact" name="contact" pattern="[0-9]{3}[0-9]{3}[0-9]{3}" required placeholder="Phone number" />
+  <input type="tel" id="input-restaurant-contact" name="contact" pattern="[0-9]{3}[0-9]{3}[0-9]{3}" value="{{contact}}" required placeholder="Phone number" />
   <small>Format: 123456789</small>
 
-  <button>Create Restaurant</button>
+  <button>Edit Restaurant</button>
 </form>
+{{/with}}
