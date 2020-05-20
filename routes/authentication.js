@@ -9,6 +9,7 @@ const authenticationRouter = new Router();
 
 const routeGuard = require('../middleware/route-guard');
 
+
 const nodemailer = require('nodemailer');
 const transporter = nodemailer.createTransport({
   service: 'Gmail',
@@ -44,14 +45,6 @@ authenticationRouter.post('/sign-up', (req, res, next) => {
         confirmationCode: generateRandom(10)
       });
     })
-    // .then((user) => {
-    //   req.session.user = user._id;
-    //   if (user.userType === 'foodie') {
-    //     res.redirect('/foodie/edit');
-    //   } else {
-    //     res.redirect('/restaurant/create');
-    //   }
-    // })
     .then((user) => {
       console.log('user', user);
       return transporter
@@ -59,15 +52,10 @@ authenticationRouter.post('/sign-up', (req, res, next) => {
           from: `DOOR App <${process.env.NODEMAILER_EMAIL}>`,
           to: user.email,
           subject: 'DOOR website - Verify your e-mail',
-          html: `<p>To complete the sign-up process, click <a href="http://localhost:3000/authentication/confirm/${user.confirmationCode}">here</a>to verify your email</p>`
+          html: `<p>To complete the sign-up process, click <a href="http://localhost:3000/authentication/confirm/${user.confirmationCode}">here </a>to verify your email</p>`
         })
         .then((result) => {
-          console.log('Email was sent successfully.');
-          console.log(result);
-        })
-        .catch((error) => {
-          console.log('There was an error sending the email.');
-          console.log(error);
+          res.render('index');
         });
     })
     .catch((error) => {
@@ -75,13 +63,14 @@ authenticationRouter.post('/sign-up', (req, res, next) => {
     });
 });
 
-authenticationRouter.get('/confirm/:confirmationCode', (req, res) => {
+authenticationRouter.get('/confirm/:confirmationCode', (req, res, next) => {
   const confirmationCodeReturned = req.params.confirmationCode;
-  console.log('req.user', req.user);
-  res.render('index');
-  if (confirmationCodeReturned === user.confirmationCode) {
-    user.status = 'active';
-  }
+  const status = 'active';
+  User.findOneAndUpdate({confirmationCode: confirmationCodeReturned}, {status})
+    .then(user => {
+     res.render('log-in');
+    })
+    .catch(error => next(error));
 });
 
 authenticationRouter.get('/log-in', (req, res) => {
@@ -103,7 +92,7 @@ authenticationRouter.post('/log-in', (req, res, next) => {
     .then((result) => {
       req.session.user = user;
       if (result && user.userType === 'foodie') {
-        res.redirect('/foodie');
+        res.redirect('/profile');
       } else if (result && user.userType === 'restaurantOwner') {
         res.redirect('/restaurant');
       } else {
