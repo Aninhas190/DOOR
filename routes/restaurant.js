@@ -30,16 +30,6 @@ const storage = multerStorageCloudinary({
 
 const uploader = multer({ storage });
 
-<<<<<<< HEAD
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET
-});
-=======
->>>>>>> 24c65b8be8d4571ee56268c693df301b6c3ad1dc
-
-
 restaurantRouter.get('/', routeGuardResOwner, (req, res, next) => {
   const ownerId = req.user._id;
   Restaurant.find({ owner: ownerId })
