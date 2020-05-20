@@ -18,6 +18,15 @@ const transporter = nodemailer.createTransport({
   }
 });
 
+const generateRandom = (length) => {
+  const characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  let token = '';
+  for (let i = 0; i < length; i++) {
+    token += characters[Math.floor(Math.random() * characters.length)];
+  }
+  return token;
+};
+
 authenticationRouter.get('/sign-up', (req, res) => {
   res.render('sign-up');
 });
@@ -31,38 +40,48 @@ authenticationRouter.post('/sign-up', (req, res, next) => {
         name,
         email,
         passwordHash: hash,
-        userType
+        userType,
+        confirmationCode: generateRandom(10)
       });
     })
-    .then(user => {
-      return transporter
-      .sendMail({
-        from: `Demo App <${process.env.NODEMAILER_EMAIL}>`,
-        to: user.email,
-        subject: 'DOOR website - Verify your e-mail',
-        html:
-          'To complete the sign-up process, click here to <a href="http://localhost:3000">verify your email</a>'
-      })
-      .then((result) => {
-        console.log('Email was sent successfully.');
-        console.log(result);
-      })
-      .catch((error) => {
-        console.log('There was an error sending the email.');
-        console.log(error);
-      });
-    })
+    // .then((user) => {
+    //   req.session.user = user._id;
+    //   if (user.userType === 'foodie') {
+    //     res.redirect('/foodie/edit');
+    //   } else {
+    //     res.redirect('/restaurant/create');
+    //   }
+    // })
     .then((user) => {
-      req.session.user = user._id;
-      if (user.userType === 'foodie') {
-        res.redirect('/foodie/edit');
-      } else {
-        res.redirect('/restaurant/create');
-      }
+      console.log('user', user);
+      return transporter
+        .sendMail({
+          from: `DOOR App <${process.env.NODEMAILER_EMAIL}>`,
+          to: user.email,
+          subject: 'DOOR website - Verify your e-mail',
+          html: `<p>To complete the sign-up process, click <a href="http://localhost:3000/authentication/confirm/${user.confirmationCode}">here</a>to verify your email</p>`
+        })
+        .then((result) => {
+          console.log('Email was sent successfully.');
+          console.log(result);
+        })
+        .catch((error) => {
+          console.log('There was an error sending the email.');
+          console.log(error);
+        });
     })
     .catch((error) => {
       next(error);
     });
+});
+
+authenticationRouter.get('/confirm/:confirmationCode', (req, res) => {
+  const confirmationCodeReturned = req.params.confirmationCode;
+  console.log('req.user', req.body);
+  res.render('index');
+  if (confirmationCodeReturned === user.confirmationCode) {
+    user.status = 'active';
+  }
 });
 
 authenticationRouter.get('/log-in', (req, res) => {

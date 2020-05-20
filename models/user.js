@@ -42,6 +42,12 @@ const schema = new mongoose.Schema({
   userType: {
     type: String,
     enum: ['foodie', 'restaurantOwner', 'admin']
+  },
+  confirmationCode: String,
+  status: {
+    type: String,
+    enum: ['active', 'inactive'],
+    default: 'inactive'
   }
 });
 
