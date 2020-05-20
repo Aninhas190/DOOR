@@ -2,7 +2,7 @@
 
 const { Router } = require('express');
 const restaurantRouter = new Router();
-//routeGuards
+// RouteGuards
 const routeGuard = require('./../middleware/route-guard.js');
 const routeGuardAdmin = require('./../middleware/route-guard-admin');
 const routeGuardResOwner = require('./../middleware/route-guard-restaurant-owner');
@@ -11,6 +11,24 @@ const Restaurant = require('./../models/restaurant');
 const ZOMATO_API_KEY = process.env.ZOMATO_API_KEY;
 const Zomato = require('zomato.js');
 const zomato = new Zomato(ZOMATO_API_KEY);
+
+// Upload Images
+const multer = require('multer');
+const cloudinary = require('cloudinary');
+const multerStorageCloudinary = require('multer-storage-cloudinary');
+
+const storage = multerStorageCloudinary({
+  cloudinary,
+  folder: 'door-restaurants-images'
+});
+
+const uploader = multer({ storage });
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API,
+  api_secret: process.env.CLOUDINARY_SECRET
+});
 
 restaurantRouter.get('/', routeGuard, routeGuardResOwner, (req, res, next) => {
   const ownerId = req.user._id;
@@ -57,9 +75,11 @@ restaurantRouter.get('/create', routeGuardResOwner, (req, res) => {
   res.render('restaurant/create');
 });
 
-restaurantRouter.post('/create', (req, res, next) => {
+restaurantRouter.post('/create', uploader.single('image'), (req, res, next) => {
+  console.log(req.file);
   const ownerId = req.user;
   const { name, description, latitude, longitude, cuisineType, contact } = req.body;
+  const image = req.file.url;
   Restaurant.create({
     name,
     description,
@@ -68,6 +88,7 @@ restaurantRouter.post('/create', (req, res, next) => {
     },
     cuisineType,
     contact,
+    image,
     owner: ownerId
   })
     .then((restaurant) => {
@@ -118,8 +139,6 @@ restaurantRouter.post('/:restaurantId/edit', routeGuardResOwner, (req, res, next
     .catch((error) => next(error));
 });
 
-
-
 //delete restaurant
 restaurantRouter.get('/:restaurantId/delete', (req, res, next) => {
   const restaurantId = req.params.restaurantId;
@@ -127,7 +146,6 @@ restaurantRouter.get('/:restaurantId/delete', (req, res, next) => {
     .then((restaurant) => res.redirect('/restaurant'))
     .catch((error) => next(error));
 });
-
 
 // View menu for single restaurant
 restaurantRouter.get('/:restaurantId/menu', (req, res, next) => {
