@@ -16,29 +16,32 @@
 
 <script>
     const restaurants = {{{ json restaurants }}};
+    console.log(restaurants[0].location.coordinates[0]);
 
-    let map;
     function initMap() {
-        map = new window.google.maps.Map(document.getElementById('map-container'), {
+        const $mapContainer = document.getElementById('map-container');
+        const map = new window.google.maps.Map($mapContainer, {
             center: {lat: 38.7223, lng: -9.10},
             zoom: 11
         });
+    
+
+        const markers = [];
+
+        for (let restaurant of restaurants) {
+            console.log(restaurant.location.coordinates[0]);
+            const marker = new window.google.maps.Marker({
+                map,
+                position: { 
+                    lat: restaurant.location.coordinates[0],
+                    lng: restaurant.location.coordinates[1] 
+                }
+            });
+
+            markers.push(marker);
+        }
+
     }
-
-    const markers = [];
-
-    for (let restaurant of restaurants) {
-        const marker = new window.google.maps.Marker({
-            map,
-            position: { 
-                lat: restaurant.location.coordinates[0],
-                lng: restaurant.location.coordinates[1] 
-            }
-        })
-        markers.push(marker);
-    }
-
-
 
 
 </script>
