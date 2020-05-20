@@ -1,2 +1,15 @@
 <h1>Create your menu</h1>
 
+<form action="" method="post">
+  <label for="dish-name-input">Dish name</label>
+  <input type="text" id="dish-name-input" name="dishName" required placeholder="Dish name" />
+  
+  
+  <label for="dish-description-input">Dish Description</label>
+  <textarea type="text" id="dish-description-input" name="dishDescription" placeholder="Dish description" /></textarea>
+
+   
+  {{> allergies}}
+
+  <button>Submit dish</button>
+</form>

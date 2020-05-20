@@ -19,6 +19,7 @@ userRouter.get('/edit', (req, res, next) => {
 
 userRouter.post('/edit', (req, res, next) => {
   const allergies = req.body.allergies;
+  console.log(allergies);
   User.updateOne({ allergies })
     .then((user) => {
       res.redirect('/');

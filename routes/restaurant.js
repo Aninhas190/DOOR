@@ -7,7 +7,11 @@ const routeGuard = require('./../middleware/route-guard.js');
 const routeGuardAdmin = require('./../middleware/route-guard-admin');
 const routeGuardResOwner = require('./../middleware/route-guard-restaurant-owner');
 
+//models
 const Restaurant = require('./../models/restaurant');
+const Menu = require('./../models/menu');
+
+//Zomato
 const ZOMATO_API_KEY = process.env.ZOMATO_API_KEY;
 const Zomato = require('zomato.js');
 const zomato = new Zomato(ZOMATO_API_KEY);
@@ -51,7 +55,6 @@ restaurantRouter.post('/createByZomatoId', (req, res, next) => {
       const image = restaurantData.thumb.split('?').splice(0,1);
       const longitude = parseFloat(restaurantData.location.longitude);
       const latitude = parseFloat(restaurantData.location.latitude);
-      console.log(restaurantData);
       return Restaurant.create({
         name: restaurantData.name,
         location: {
@@ -139,14 +142,6 @@ restaurantRouter.post('/:restaurantId/edit', routeGuardResOwner, (req, res, next
     .catch((error) => next(error));
 });
 
-restaurantRouter.get('/:restaurantId/addMenu', (req, res, next) => {
-  const restaurantId = req.params.restaurantId;
-  Restaurant.findById(restaurantId)
-    .then((restaurant) => res.render('restaurant/addMenu'))
-    .catch((error) => next(error));
-});
-
-
 //delete restaurant
 restaurantRouter.get('/:restaurantId/delete', (req, res, next) => {
   const restaurantId = req.params.restaurantId;
@@ -155,14 +150,44 @@ restaurantRouter.get('/:restaurantId/delete', (req, res, next) => {
     .catch((error) => next(error));
 });
 
+restaurantRouter.get('/:restaurantId/addMenu', routeGuardResOwner, (req, res, next) => {
+  const restaurantId = req.params.restaurantId;
+  Restaurant.findById(restaurantId)
+    .then((restaurant) => res.render('restaurant/addMenu'))
+    .catch((error) => next(error));
+});
 
+restaurantRouter.post('/:restaurantId/addMenu', (req, res, next) => {
+  const restaurantId = req.params.restaurantId;
+  console.log(req.body)
+  const { dishName, allergies, dishDescription } = req.body;
+  const restaurantMenu = [];
+  Menu.create({
+    restaurantId,
+    dishName,
+    allergies,
+    dishDescription   
+  })
+    .then((dishMenu) => {
+      console.log(dishMenu)
+      restaurantMenu.push(dishMenu);
+      return restaurantMenu;
+    })
+    .then(restMenu => {
+      res.render('restaurant/menu', {restMenu});
+    })
+    .catch((error) => next(error));
+});
 
 
 // View menu for single restaurant
 restaurantRouter.get('/:restaurantId/menu', (req, res, next) => {
   const restaurantId = req.params.restaurantId;
-  Restaurant.findById(restaurantId)
-    .then((restaurant) => res.render('restaurant/menu', { restaurant }))
+  Menu.find({restaurantId})
+    .then((restMenu) => {
+      console.log({restMenu});
+      res.render('restaurant/menu', {restMenu});
+    })
     .catch((error) => next(error));
 });
 

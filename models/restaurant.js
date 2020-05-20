@@ -134,32 +134,6 @@ const RestaurantSchema = new mongoose.Schema({
   menuExists: {
     type: Boolean,
     default: false
-  },
-  menu: {
-    dishName: {
-      type: String
-    },
-    allergies: [
-      {
-        type: String,
-        enum: [
-          'gluten',
-          'celery',
-          'sesame',
-          'nuts',
-          'lupin',
-          'peanuts',
-          'fish',
-          'milk',
-          'mollusks',
-          'sulphites',
-          'crustaceans',
-          'wheat',
-          'mustard'
-        ]
-      }
-    ],
-    dishDescription: String
   }
 });
 
