@@ -1,4 +1,13 @@
 // $font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+$color-yellow: #ffdf64;
+$color-shadow: #877b66;
+$color-flax: #e2d686;
+$color-olivine: #afc97e;
+$color-teagreen: #d4e6b5;
+$color-greyButton: #eae9e6;
+$color-shadow: rgba(135, 123, 102, 1);
+
 $font-sans: 'Noto Sans', sans-serif;
 $grey: hsla(0, 0, 75%, 0.5);
 
@@ -12,8 +21,6 @@ $grey: hsla(0, 0, 75%, 0.5);
 
 body {
   max-width: 100vw;
-  // padding: 0;
-  // margin: 0;
   font-family: sans-serif;
   font-family: $font-sans;
   line-height: 2;
@@ -33,7 +40,7 @@ nav {
   margin: 0 auto;
   text-transform: uppercase;
   padding: 0 1em;
-  background-color: #ffd800;
+  background-color: $color-yellow;
   display: flex;
   text-align: center;
   font-weight: bold;
@@ -95,22 +102,18 @@ select {
   border-radius: 0;
   margin-bottom: 1em;
   color: inherit;
-  background-color: #eae9e6;
+  background-color: $color-greyButton;
   transition: transform 0.6s 0.25s ease-out;
 }
 
 .btn:hover {
-  box-shadow: 7px 10px 6px 1px rgba(181, 181, 181, 1);
+  box-shadow: 7px 10px 6px 1px $color-shadow;
   transform: scale(0.9);
 }
 
 textarea {
   min-height: 8em;
   resize: vertical;
-}
-
-.fadeBackground {
-  background-color: rgba($color: #fff, $alpha: 0.1);
 }
 
 .main-page {
@@ -125,14 +128,14 @@ textarea {
 
   h1 {
     background-color: rgba($color: #000, $alpha: 0.4);
-    font-size: 6em;
-    padding: 0 3rem;
+    font-size: 4em;
+    padding: 0 2rem;
     border: 3px white solid;
     box-shadow: 17px 14px 5px 0px rgba(0, 0, 0, 0.575);
   }
   h2 {
     // margin-top: 1em;
-    font-size: 3em;
+    font-size: 2em;
     font-weight: bolder;
     color: #fff;
     // background-color: rgba($color: #000, $alpha: 0.1);
@@ -153,7 +156,7 @@ textarea {
 }
 
 .index-last-section {
-  background-color: #f0ebd1;
+  background-color: $color-teagreen;
   height: 60vh;
   display: flex;
   flex-direction: row;
@@ -164,26 +167,40 @@ textarea {
   }
   a {
     margin-top: 2em;
-    background-color: #ffd800;
+    background-color: $color-yellow;
     padding: 1em 2em;
     border: 1px solid white;
-    border-radius: 10px;
+    border-radius: 3px;
     font-weight: 700;
   }
 }
 
 .box {
   padding: 3em 2em;
-  background-color: rgba($color: #000, $alpha: 0.3);
-  border-radius: 10px;
+  background-color: rgba($color: $color-olivine, $alpha: 0.3);
+  border-radius: 3px;
   width: 20em;
-  height: 30vh;
+  height: 40vh;
   width: 80vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
+  position: relative;
+
+  article {
+    position: absolute;
+    top: 1em;
+  }
+
+  a {
+    position: absolute;
+    bottom: 1em;
+    background-color: $color-yellow;
+    // text-decoration: none;
+    color: 000;
+  }
 
   a:hover {
     text-decoration: none;
@@ -194,20 +211,20 @@ textarea {
 .restaurant-index {
   a {
     margin-left: 1em;
-    background-color: #ffd800;
+    background-color: $color-yellow;
     padding: 1em 2em;
   }
 }
-  
+
 footer {
-  //position: absolute;
-  left: 0;
-  bottom: 0;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  padding: 0.5em;
   width: 100%;
   background-color: #eaeaea;
   color: black;
   text-align: right;
-  padding: 1em;
   font-size: smaller;
 }
 
