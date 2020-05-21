@@ -86,20 +86,7 @@ img {
 form {
   display: flex;
   flex-direction: column;
-  #gluten,
-  #celery,
-  #sesame,
-  #nuts,
-  #lupin,
-  #peanuts,
-  #fish,
-  #milk,
-  #eggs,
-  #soybeans,
-  #mollusks,
-  #sulphites,
-  #crustaceans,
-  #wheat {
+  #allergies {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
