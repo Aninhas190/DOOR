@@ -105,7 +105,7 @@ restaurantRouter.post('/create', uploader.single('image'), (req, res, next) => {
 restaurantRouter.get('/list', (req, res, next) => {
   Restaurant.find()
     .then((restaurants) => {
-      res.render('index', {restaurants});
+      res.render('restaurant/list', {restaurants});
     })
     .catch((error) => next(error));
 });
