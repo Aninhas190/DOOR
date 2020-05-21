@@ -32,9 +32,6 @@ body {
 
 .container {
   width: 100vw;
-  // height: 100vh;
-  // left: auto;
-  // right: auto;
   margin: 2em;
 }
 
@@ -385,13 +382,6 @@ footer {
   color: white;
 }
 
-// table,
-// td {
-//   border: 1px solid $color-flax;
-// }
-
-// thead,
-// tfoot {
-//   background-color: $color-flax;
-//   font-weight: bold;
-// }
+.list-container {
+  margin-right: 2em;
+}
