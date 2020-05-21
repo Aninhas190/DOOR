@@ -273,7 +273,8 @@ footer {
   margin: 2em;
 
   img {
-    max-width: 10em;
+    width: 8em;
+    height: 8em;
     position: absolute;
     top: 1em;
     border: 1px solid $color-olivine;
@@ -324,7 +325,7 @@ footer {
 
 .href-as-green-button {
   text-align: center;
-  margin: auto 2em;
+  margin: 0 2em;
   padding: 1em;
   width: 25em;
   color: $color-href;
