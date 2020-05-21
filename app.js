@@ -37,8 +37,8 @@ app.use(
   sassMiddleware({
     src: join(__dirname, 'public'),
     dest: join(__dirname, 'public'),
-    outputStyle: process.env.NODE_ENV === 'development' ? 'nested' : 'compressed',
-    force: process.env.NODE_ENV === 'development',
+    outputStyle: process.env.NODE_ENV === 'production' ? 'nested' : 'compressed',
+    force: process.env.NODE_ENV === 'production',
     sourceMap: true
   })
 );
@@ -80,7 +80,7 @@ app.use((req, res, next) => {
 app.use((error, req, res) => {
   // Set error information, with stack only available in development
   res.locals.message = error.message;
-  res.locals.error = req.app.get('env') === 'development' ? error : {};
+  res.locals.error = req.app.get('env') === 'production' ? error : {};
   res.status(error.status || 500);
   res.render('error');
 });
