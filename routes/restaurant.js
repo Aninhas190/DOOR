@@ -68,7 +68,7 @@ restaurantRouter.post('/createByZomatoId', (req, res, next) => {
         contact: restaurantData.phone_numbers.split(' ').join(''),
         owner: ownerId
       }).then((restaurants) => {
-        res.render('restaurant', { restaurants });
+        res.redirect('/');
       });
     })
     .catch((error) => next(error));
@@ -105,7 +105,7 @@ restaurantRouter.post('/create', uploader.single('image'), (req, res, next) => {
 restaurantRouter.get('/list', (req, res, next) => {
   Restaurant.find()
     .then((restaurants) => {
-      res.render('restaurant/list', {restaurants});
+      res.render('restaurant/list', { restaurants });
     })
     .catch((error) => next(error));
 });
@@ -178,7 +178,7 @@ restaurantRouter.get('/:restaurantId/delete', (req, res, next) => {
 restaurantRouter.get('/:restaurantId/addMenu', routeGuardResOwner, (req, res, next) => {
   const restaurantId = req.params.restaurantId;
   Restaurant.findById(restaurantId)
-    .then((restaurant) => res.render('restaurant/addMenu'))
+    .then((restaurant) => res.render('restaurant/addMenu', {}))
     .catch((error) => next(error));
 });
 
@@ -199,6 +199,13 @@ restaurantRouter.post('/:restaurantId/addMenu', (req, res, next) => {
     .then((restMenu) => {
       res.render('restaurant/menu', { restMenu });
     })
+    .catch((error) => next(error));
+});
+
+restaurantRouter.get('/:restaurantId/menu/delete', (req, res, next) => {
+  const restaurantId = req.params.restaurantId;
+  Menu.findOneAndDelete({ restaurantId })
+    .then((dish) => res.redirect('/restaurant/menu'))
     .catch((error) => next(error));
 });
 
