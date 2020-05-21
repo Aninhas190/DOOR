@@ -21,8 +21,10 @@ router.get('/profile', routeGuard, (req, res, next) => {
   User.findById(req.user._id)
     .then((document) => {
       user = document.toObject();
-      if (userType === 'restaurantOwner' || userType === 'admin') {
+      if (userType === 'restaurantOwner') {
         user.isOwner = true;
+      } else if ( userType === 'admin') {
+        user.isAdmin = true;
       }
       res.render('profile', { document, user });
     })

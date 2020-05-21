@@ -2,6 +2,8 @@
     
     {{#if user.isOwner}}
         <a class="href-as-green-button" href="/restaurant">See my list of restaurants</a></strong>
+    {{else if user.isAdmin}}
+        <a class="href-as-green-button" href="/admin">See all restaurants</a></strong>
     {{/if}}
 
     <h3>{{user.name}}'s Profile info</h3>
