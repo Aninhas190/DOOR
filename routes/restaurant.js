@@ -108,18 +108,18 @@ restaurantRouter.get('/list', routeGuard, (req, res, next) => {
   console.log('user allergies = ', userAllergies);
   Restaurant.find()
     .then((allRestaurants) => {
-      return Menu.find()
-    .then(menus => {
-      for (let menu of menus) {
-        if (!menu.allergies.includes(userAllergies) || !menu) {
-          curatedListOfRest.push(menu.restaurantId);
+      return Menu.find().then((menus) => {
+        for (let menu of menus) {
+          if (!menu.allergies.includes(userAllergies) || !menu) {
+            curatedListOfRest.push(menu.restaurantId);
+          }
         }
-      }
-      return Restaurant.find({_id: curatedListOfRest})
-        .then(restaurants => res.render('restaurant/list', { restaurants }));
+        return Restaurant.find({ _id: curatedListOfRest }).then((restaurants) =>
+          res.render('restaurant/list', { restaurants })
+        );
       });
     })
-    .catch((error) => next(error));  
+    .catch((error) => next(error));
 });
 
 // View single restaurant
@@ -128,7 +128,8 @@ restaurantRouter.get('/:restaurantId', (req, res, next) => {
   Restaurant.findById(restaurantId)
     .then((restaurant) => {
       console.log(restaurant);
-      res.render('restaurant/single', { restaurant })})
+      res.render('restaurant/single', { restaurant });
+    })
     .catch((error) => next(error));
 });
 
@@ -142,7 +143,7 @@ restaurantRouter.get('/:restaurantId/edit', routeGuardResOwner, (req, res, next)
 
 restaurantRouter.post('/:restaurantId/edit', routeGuardResOwner, (req, res, next) => {
   const restaurantId = req.params.restaurantId;
-  const { name, description, latitude, longitude, cuisineType, contact, address} = req.body;
+  const { name, description, latitude, longitude, cuisineType, contact, address } = req.body;
   Restaurant.findByIdAndUpdate(restaurantId, {
     name,
     description,

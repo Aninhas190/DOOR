@@ -92,7 +92,6 @@ authenticationRouter.post('/log-in', (req, res, next) => {
       if (result && user.userType === 'foodie') {
         res.redirect('/profile');
       } else if (result && user.userType === 'restaurantOwner') {
-        console.log(req.session)
         res.redirect('/restaurant');
       } else {
         return Promise.reject(new Error('Wrong password.'));
