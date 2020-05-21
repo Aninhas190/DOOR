@@ -4,9 +4,15 @@ const { Router } = require('express');
 const router = new Router();
 const routeGuard = require('./../middleware/route-guard');
 const User = require('./../models/user');
+const Restaurant = require('./../models/restaurant');
 
 router.get('/', (req, res, next) => {
-  res.render('index', { title: 'DOOR' });
+  Restaurant.find()
+    .then((restaurants) => {
+      console.log(restaurants)
+      res.render('index', { restaurants, title: 'DOOR' });
+    })
+    .catch((error) => next(error));
 });
 
 router.get('/profile', routeGuard, (req, res, next) => {

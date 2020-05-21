@@ -134,8 +134,9 @@ textarea {
   .index-last-section .href-as-yellow-button {
     text-align: center;
     margin-top: auto 2em;
+    width: 15em;
     bottom: 1em;
-    padding: auto 1em;
+    padding: 0.5em;
     color: #624d01;
     background-color: #ffdf64;
     border: 1px solid white;
@@ -166,6 +167,7 @@ textarea {
 
 .href-as-yellow-button {
   text-align: center;
+  width: 30em;
   padding: auto 1em;
   color: #624d01;
   background-color: #ffdf64;
@@ -253,21 +255,6 @@ footer {
   justify-content: flex-start; }
   .restaurant-index img {
     padding-bottom: 2em; }
-  .restaurant-index .href-as-green-button {
-    position: relative;
-    text-align: center;
-    left: 3em;
-    bottom: 4em;
-    width: fit-content;
-    color: #624d01;
-    background-color: #d4e6b5;
-    border: 1px solid white;
-    color: #624d01;
-    border-radius: 3px;
-    font-weight: 700; }
-  .restaurant-index .href-as-green-button:hover {
-    text-decoration: none;
-    color: white; }
 
 .display-allergies {
   flex-wrap: wrap;
@@ -280,10 +267,12 @@ footer {
 
 .profile .href-as-green-button {
   position: absolute;
-  text-align: center;
-  left: 3em;
-  bottom: 4em;
+  padding: 5px;
+  top: 5em;
   width: 15em;
+  right: 1em;
+  margin: 1em;
+  text-align: center;
   color: #624d01;
   background-color: #d4e6b5;
   border: 1px solid white;
@@ -292,6 +281,25 @@ footer {
   font-weight: 700; }
 
 .profile .href-as-green-button:hover {
+  text-decoration: none;
+  color: white; }
+
+.href-as-green-button {
+  align-items: right;
+  margin: 1em;
+  padding: 0.5em;
+  text-emphasis: wrap;
+  text-align: center;
+  top: 4em;
+  width: 25em;
+  color: #624d01;
+  background-color: #d4e6b5;
+  border: 1px solid white;
+  color: #624d01;
+  border-radius: 3px;
+  font-weight: 700; }
+
+.href-as-green-button:hover {
   text-decoration: none;
   color: white; }
 
