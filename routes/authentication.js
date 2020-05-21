@@ -9,7 +9,6 @@ const authenticationRouter = new Router();
 
 const routeGuard = require('../middleware/route-guard');
 
-
 const nodemailer = require('nodemailer');
 const transporter = nodemailer.createTransport({
   service: 'Gmail',
@@ -66,11 +65,11 @@ authenticationRouter.post('/sign-up', (req, res, next) => {
 authenticationRouter.get('/confirm/:confirmationCode', (req, res, next) => {
   const confirmationCodeReturned = req.params.confirmationCode;
   const status = 'active';
-  User.findOneAndUpdate({confirmationCode: confirmationCodeReturned}, {status})
-    .then(user => {
-     res.render('log-in');
+  User.findOneAndUpdate({ confirmationCode: confirmationCodeReturned }, { status })
+    .then((user) => {
+      res.render('log-in');
     })
-    .catch(error => next(error));
+    .catch((error) => next(error));
 });
 
 authenticationRouter.get('/log-in', (req, res) => {
@@ -104,8 +103,23 @@ authenticationRouter.post('/log-in', (req, res, next) => {
     });
 });
 
-authenticationRouter.get('/profile', routeGuard, (req, res) => {
-  res.render('profile');
+authenticationRouter.get('/profile', routeGuard, (req, res, next) => {
+  let user;
+  const userType = req.user.userType;
+
+  User.findById(req.user._id)
+    .then((document) => {
+      user = document.toObject();
+      if (userType === 'restaurantOwner') {
+        user.isOwner = true;
+      }
+      console.log('user', user);
+      console.log('document', document);
+      res.render('profile', { document, user });
+    })
+    .catch((error) => {
+      next(error);
+    });
 });
 
 authenticationRouter.post('/sign-out', (req, res) => {

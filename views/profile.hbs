@@ -13,7 +13,10 @@
     <span>{{user.allergies}}</span>
     </div>
         </br>
-    <a class="href-as-green-button" href="/restaurant">See my list of restaurants</a></strong>
+    {{#if user.isOwner}}
+        <a class="href-as-green-button" href="/restaurant">See my list of restaurants</a></strong>
+    {{/if}}
+
 </section>
 
 
