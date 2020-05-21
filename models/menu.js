@@ -2,8 +2,6 @@
 
 const mongoose = require('mongoose');
 
-
-
 const MenuSchema = new mongoose.Schema({
   restaurantId: {
     type: mongoose.Schema.Types.ObjectId,
@@ -35,6 +33,9 @@ const MenuSchema = new mongoose.Schema({
       ]
     }
   ],
+  price: {
+    type: Number
+  },
   dishDescription: String
 });
 

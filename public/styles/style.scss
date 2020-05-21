@@ -176,15 +176,15 @@ textarea {
   }
   .href-as-yellow-button {
     text-align: center;
-    margin-top: 2em;
+    margin-top: auto 2em;
+    bottom: 1em;
+    padding: auto 1em;
     color: $color-href;
     background-color: $color-yellow;
-    padding: 1em;
     border: 1px solid white;
     border-radius: 3px;
     font-weight: 700;
     position: absolute;
-    bottom: 1em;
 
     .href-as-yellow-button:hover {
       text-decoration: none;
@@ -215,10 +215,9 @@ textarea {
 
 .href-as-yellow-button {
   text-align: center;
-  padding: 1em;
+  padding: auto 1em;
   color: $color-href;
   background-color: $color-yellow;
-  padding: 1em;
   border: 1px solid white;
   border-radius: 3px;
   font-weight: 700;
@@ -325,11 +324,11 @@ footer {
 
 .href-as-green-button {
   text-align: center;
-  margin: 2em;
+  margin: auto 2em;
+  padding: 1em;
   width: 25em;
   color: $color-href;
   background-color: $color-teagreen;
-  padding: 1em;
   border: 1px solid white;
   color: #624d01;
   border-radius: 3px;
