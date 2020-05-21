@@ -277,8 +277,7 @@ footer {
   margin: 2em;
 
   img {
-    width: 8em;
-    height: 100vh;
+    max-width: 100%;
     position: absolute;
     top: 1em;
     border: 1px solid $color-olivine;
