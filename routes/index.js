@@ -19,8 +19,6 @@ router.get('/profile', routeGuard, (req, res, next) => {
       if (userType === 'restaurantOwner') {
         user.isOwner = true;
       }
-      console.log('user', user);
-      console.log('document', document);
       res.render('profile', { document, user });
     })
     .catch((error) => {

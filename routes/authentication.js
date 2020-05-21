@@ -45,7 +45,6 @@ authenticationRouter.post('/sign-up', (req, res, next) => {
       });
     })
     .then((user) => {
-      console.log('user', user);
       return transporter
         .sendMail({
           from: `DOOR App <${process.env.NODEMAILER_EMAIL}>`,
