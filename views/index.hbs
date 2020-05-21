@@ -1,26 +1,27 @@
-<section>
-  <div class="main-page">
-    <h1>{{title}}</h1>  
+  <section>
+    <div class="main-page">
+      <h1>{{title}}</h1>  
 
-    <h2>Dine Out Of Restrictions</h2>
+      <h2>Dine Out Of Restrictions</h2>
 
-    <div>
-      <p>Find out which restaurants can accomodate your dietery requirements.</p>
-      <p>Search for a restaurant from a list made just for you!</p>
+      <div>
+        <p>Find out which restaurants can accomodate your dietery requirements.</p>
+        <p>Search for a restaurant from a list made just for you!</p>
+      </div>
+
     </div>
-
-  </div>
-</section>
-<!--Section Maps -->
-<section>
-  <div id="map-container"></div>
-</section>
-<!--Section product -->
+  </section>
+  <!--Section Maps -->
+  <section>
+    <div id="map-container"></div>
+  </section>
+  <!--Section product -->
+{{!-- <div class="container"> --}}
 <section>
   <div class="index-last-section">
     <article class="box">
       <div class = "items-inside-box">
-        <h3>Are you restaurant owner?</h3>
+        <h3>Are you foodie?</h3>
         <p>Connect with your clients in a different way, while boosting your business.</p>
       </div>
       <a class= "href-as-yellow-button"  href="/authentication/sign-up">Create the Table</a>
@@ -34,6 +35,32 @@
     </article>
   </div>
 </section>  
+  {{!-- </div> --}}
+
+
+{{!-- 
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Are you restaurant owner?</h5>
+          <p class="card-text">Connect with your clients in a different way, while boosting your business.</p>
+          <a href="/authentication/sign-up" class="href-as-yellow-button">Create the Table</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Are you restaurant owner?</h5>
+          <p class="card-text">Then this is for you! </br> Find the restaurant that can fullfill your dietary requirements.</p>
+          <a href="/authentication/sign-up" class="href-as-yellow-button">Join the Table</a>
+        </div>
+      </div>
+    </div>
+  </div> --}}
 
 <script>
   const restaurants = {{{ json restaurants }}};
@@ -41,7 +68,257 @@
     const $mapContainer = document.getElementById('map-container');
     const map = new window.google.maps.Map($mapContainer, {
       center: {lat: 38.7223, lng: -9.10},
-      zoom: 11
+      zoom: 11, 
+      
+  styles: [
+  {
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#EBE3CD"
+      }
+    ]
+  },
+  {
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#523735"
+      }
+    ]
+  },
+  {
+    "elementType": "labels.text.stroke",
+    "stylers": [
+      {
+        "color": "#F5F1E6"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative",
+    "elementType": "geometry.stroke",
+    "stylers": [
+      {
+        "color": "#C9B2A6"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.land_parcel",
+    "elementType": "geometry.stroke",
+    "stylers": [
+      {
+        "color": "#DCD2BE"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.land_parcel",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#AE9E90"
+      }
+    ]
+  },
+  {
+    "featureType": "landscape.natural",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#DFD2AE"
+      }
+    ]
+  },
+  {
+    "featureType": "poi",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "poi",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#DFD2AE"
+      }
+    ]
+  },
+  {
+    "featureType": "poi",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#93817C"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.park",
+    "elementType": "geometry.fill",
+    "stylers": [
+      {
+        "color": "#A5B076"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.park",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#447530"
+      }
+    ]
+  },
+  {
+    "featureType": "road",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#F5F1E6"
+      }
+    ]
+  },
+  {
+    "featureType": "road",
+    "elementType": "labels.icon",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "road.arterial",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#FDFCF8"
+      }
+    ]
+  },
+  {
+    "featureType": "road.highway",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#F8C967"
+      }
+    ]
+  },
+  {
+    "featureType": "road.highway",
+    "elementType": "geometry.stroke",
+    "stylers": [
+      {
+        "color": "#E9BC62"
+      }
+    ]
+  },
+  {
+    "featureType": "road.highway.controlled_access",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#E98D58"
+      }
+    ]
+  },
+  {
+    "featureType": "road.highway.controlled_access",
+    "elementType": "geometry.stroke",
+    "stylers": [
+      {
+        "color": "#DB8555"
+      }
+    ]
+  },
+  {
+    "featureType": "road.local",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#806B63"
+      }
+    ]
+  },
+  {
+    "featureType": "transit",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "transit.line",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#DFD2AE"
+      }
+    ]
+  },
+  {
+    "featureType": "transit.line",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#8F7D77"
+      }
+    ]
+  },
+  {
+    "featureType": "transit.line",
+    "elementType": "labels.text.stroke",
+    "stylers": [
+      {
+        "color": "#EBE3CD"
+      }
+    ]
+  },
+  {
+    "featureType": "transit.station",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#DFD2AE"
+      }
+    ]
+  },
+  {
+    "featureType": "water",
+    "elementType": "geometry.fill",
+    "stylers": [
+      {
+        "color": "#B9D3C2"
+      }
+    ]
+  },
+  {
+    "featureType": "water",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#92998D"
+      }
+    ]
+  }
+]
     });
 
     //let icon 
@@ -66,6 +343,8 @@
   }
 
   }
+
+
 </script>
 
 {{> mapscript}}
