@@ -7,22 +7,24 @@
     {{/each}} --}}
 {{!-- </section> --}}
 
+<h4>Restaurant's {{name}} Menu</h4>
 
-<table>
-        <p>Restaurant's {{name}} Menu</p>
+<br>
+
+<table class="table">
     <thead>
         <tr>
-            <td>Dish Name</td>
-            <td>Dish Allergens</td>
-            <td>Dish Description</td>
+            <th scope="col">Dish Name</th>
+            <th scope="col">Dish Allergens</th>
+            <th scope="col">Dish Description</th>
         </tr>
     </thead>
     <tbody>
         {{#each restMenu}}
             <tr>
-                <td>{{dishName}}</td>
-                <td>{{allergies}}</td>
-                <td>{{dishDescription}}</td>
+                <td scope="row">{{dishName}}</td>
+                <td scope="row">{{allergies}}</td>
+                <td scope="row">{{dishDescription}}</td>
             </tr>
         {{/each}}
     </tbody>
