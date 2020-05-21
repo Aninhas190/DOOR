@@ -13,14 +13,14 @@ userRouter.get('/', (req, res, next) => {
 
 // Route to create allergy list
 
-userRouter.get('/edit', (req, res, next) => {
+userRouter.get('/edit', routeGuard, (req, res, next) => {
   res.render('foodie/edit');
 });
 
 userRouter.post('/edit', (req, res, next) => {
   const allergies = req.body.allergies;
-  console.log(allergies);
-  User.updateOne({ allergies })
+  const userId = req.user._id;
+  User.findByIdAndUpdate(userId,{ allergies })
     .then((user) => {
       res.redirect('/');
     })

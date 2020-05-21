@@ -66,7 +66,6 @@ restaurantRouter.post('/createByZomatoId', (req, res, next) => {
         contact: restaurantData.phone_numbers.split(' ').join(''),
         owner: ownerId
       }).then((restaurant) => {
-        console.log(restaurant);
         res.render('restaurant/index', { restaurant });
       });
     })
@@ -75,7 +74,6 @@ restaurantRouter.post('/createByZomatoId', (req, res, next) => {
 
 //manually
 restaurantRouter.get('/create', routeGuardResOwner, (req, res) => {
-  console.log(routeGuardResOwner);
   res.render('restaurant/create');
 });
 
@@ -95,7 +93,6 @@ restaurantRouter.post('/create', uploader.single('image'), (req, res, next) => {
     owner: ownerId
   })
     .then((restaurant) => {
-      console.log(restaurant);
       res.render('restaurant/index', { restaurant });
     })
     .catch((error) => next(error));
@@ -159,7 +156,6 @@ restaurantRouter.get('/:restaurantId/addMenu', routeGuardResOwner, (req, res, ne
 
 restaurantRouter.post('/:restaurantId/addMenu', (req, res, next) => {
   const restaurantId = req.params.restaurantId;
-  console.log(req.body)
   const { dishName, allergies, dishDescription } = req.body;
   const restaurantMenu = [];
   Menu.create({
@@ -169,7 +165,6 @@ restaurantRouter.post('/:restaurantId/addMenu', (req, res, next) => {
     dishDescription   
   })
     .then((dishMenu) => {
-      console.log(dishMenu)
       restaurantMenu.push(dishMenu);
       return restaurantMenu;
     })
@@ -185,7 +180,6 @@ restaurantRouter.get('/:restaurantId/menu', (req, res, next) => {
   const restaurantId = req.params.restaurantId;
   Menu.find({restaurantId})
     .then((restMenu) => {
-      console.log({restMenu});
       res.render('restaurant/menu', {restMenu});
     })
     .catch((error) => next(error));
