@@ -9,7 +9,7 @@
     {{#each restaurants}}
     <div class="col-sm-12 col-md-4 col-lg-2">
       <div class="card" style="width:18rem;">
-          <img src="{{image}}" alt="image" style="width:20rem;"/>
+          <a href="{{_id}}"><img src="{{image}}" alt="image" style="width:20rem;"/></a>
             <div class ="card-body">
               <h4 class="card-title"> <a href="{{_id}}">{{name}}</a> </h4>
               <p class="card-text">{{cuisineType}}</p>
