@@ -23,6 +23,7 @@ $grey: hsla(0, 0, 75%, 0.5);
 
 body {
   max-width: 100vw;
+  max-height: 100vh;
   font-family: sans-serif;
   font-family: $font-sans;
   line-height: 2;
@@ -30,10 +31,10 @@ body {
 }
 
 .container {
-  width: 100%;
-  height: 100%;
-  left: auto;
-  right: auto;
+  width: 100vw;
+  // height: 100vh;
+  // left: auto;
+  // right: auto;
   margin: 2em;
 }
 
@@ -217,7 +218,7 @@ textarea {
 .href-as-yellow-button {
   text-align: center;
   width: 30em;
-  padding: auto 1em;
+  padding: 0.5em;
   color: $color-href;
   background-color: $color-yellow;
   border: 1px solid white;
@@ -236,6 +237,7 @@ footer {
   bottom: 0px;
   right: 0px;
   padding: 0.5em;
+  margin-top: 2em;
   width: 100%;
   background-color: $color-footer;
   color: black;
@@ -244,13 +246,13 @@ footer {
 }
 
 #map-container {
-  margin-top: 3em;
-  margin-left: 9em;
+  margin: 3em auto 5em auto;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 60vh;
   width: 80vw;
+  border: 1px solid $color-greyButton;
 }
 
 .restaurantList {
@@ -333,6 +335,7 @@ footer {
 }
 
 .profile {
+  max-height: 100vh;
   // position: absolute;
   h3 {
     text-transform: uppercase;
