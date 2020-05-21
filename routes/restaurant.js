@@ -68,7 +68,7 @@ restaurantRouter.post('/createByZomatoId', (req, res, next) => {
         contact: restaurantData.phone_numbers.split(' ').join(''),
         owner: ownerId
       }).then((restaurants) => {
-        res.render('restaurant/index', { restaurants });
+        res.render('restaurant', { restaurants });
       });
     })
     .catch((error) => next(error));
