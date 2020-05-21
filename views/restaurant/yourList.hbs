@@ -1,20 +1,21 @@
-<h4>Your curated list of restaurants</h4>
-<p> The list of restaurants that can fullfill your dietary requirements.</p>
-<div id="map-container"></div>
+<div class="container">
+    <h4>Your curated list of restaurants</h4>
+    <p> The list of restaurants that can fullfill your dietary requirements.</p>
+    <div id="map-container"></div>
 
-<section class="restaurantList">
-    {{#each restaurants}}
-        <article class ="restaurantCard">
-            <img src="{{image}}" alt="image"/>
-            <div class = "items-inside-card">
-                <h4> <a href="{{_id}}">{{name}}</a> </h4>
-                <p>{{cuisineType}}</p>
-            </br>
-            </div>
-        </article>
-    {{/each}}
-</section>
-
+    <section class="restaurantList">
+        {{#each restaurants}}
+            <article class ="restaurantCard">
+                <img src="{{image}}" alt="image"/>
+                <div class = "items-inside-card">
+                    <h4> <a href="{{_id}}">{{name}}</a> </h4>
+                    <p>{{cuisineType}}</p>
+                </br>
+                </div>
+            </article>
+        {{/each}}
+    </section>
+</div>
 <script>
     const restaurants = {{{ json restaurants }}};
 
@@ -37,17 +38,19 @@
                 },
                 title: restaurant.name
             });
-            
-            marker.addListener('click', () => {
-                const restaurantSingle = `/restaurant/${restaurant._id}`;
-                window.location = restaurantSingle;
-            })
-            markers.push(marker);
+        
+                marker.addListener('click', () => {
+                    const restaurantSingle = `/restaurant/${restaurant._id}`;
+                    window.location = restaurantSingle;
+                })
+                markers.push(marker);
+            }
+
         }
 
-    }
 
+    </script>
 
-</script>
+    {{> mapscript}}
 
-{{> mapscript}}
+    </div>
