@@ -1,18 +1,6 @@
 <h4>Your curated list of restaurants</h4>
 <p>This is list only shows you restaurants who provide menus to according to your allergies requirements</p>
 <div id="map-container"></div>
-<section class="restaurantList">
-    {{#each restaurants}}
-        <article class ="restaurantCard">
-            <img src="{{image}}" alt="image"/>
-            <div class = "items-inside-card">
-                <h4> <a href="{{_id}}">{{name}}</a> </h4>
-                <p>{{cuisineType}}</p>
-            </br>
-            </div>
-        </article>
-    {{/each}}
-</section>
 
 <script>
     const restaurants = {{{ json restaurants }}};
