@@ -93,6 +93,8 @@ authenticationRouter.post('/log-in', (req, res, next) => {
         res.redirect('/profile');
       } else if (result && user.userType === 'restaurantOwner') {
         res.redirect('/restaurant');
+      } else if (result && user.userType === 'admin' )  {
+        res.redirect('/admin');
       } else {
         return Promise.reject(new Error('Wrong password.'));
       }
