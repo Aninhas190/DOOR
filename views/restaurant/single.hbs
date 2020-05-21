@@ -11,6 +11,7 @@
         <strong>Restaurant Description:</strong>
         {{restaurant.description}}
     </p>
+    <p>{{restaurant.location.address}}</p>
     <a href="/restaurant/{{restaurant._id}}/menu">View Menu</a>
 
     <div id="map-container"></div>
@@ -37,7 +38,8 @@
             position: { 
                 lat: latitude,
                 lng: longitude 
-            }
+            },
+            title: restaurant.name
         });
             
                        

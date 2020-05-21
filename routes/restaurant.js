@@ -8,6 +8,7 @@ const routeGuardAdmin = require('./../middleware/route-guard-admin');
 const routeGuardResOwner = require('./../middleware/route-guard-restaurant-owner');
 
 //models
+const User = require('./../models/user');
 const Restaurant = require('./../models/restaurant');
 const Menu = require('./../models/menu');
 
@@ -50,23 +51,24 @@ restaurantRouter.post('/createByZomatoId', (req, res, next) => {
   const ownerId = req.user;
   const zomatoRestaurantId = req.body.zomatoId;
   zomato
-  .restaurant({ res_id: zomatoRestaurantId })
-  .then((restaurantData) => {
-      const image = restaurantData.thumb.split('?').splice(0,1);
+    .restaurant({ res_id: zomatoRestaurantId })
+    .then((restaurantData) => {
+      const image = restaurantData.thumb.split('?').splice(0, 1);
       const longitude = parseFloat(restaurantData.location.longitude);
       const latitude = parseFloat(restaurantData.location.latitude);
       return Restaurant.create({
         name: restaurantData.name,
         location: {
-          coordinates: [latitude, longitude]
+          coordinates: [latitude, longitude],
+          address: restaurantData.location.address
         },
         image: image[0],
         cuisineType: restaurantData.cuisines,
         averagePrice: restaurantData.average_cost_for_two,
         contact: restaurantData.phone_numbers.split(' ').join(''),
         owner: ownerId
-      }).then((restaurant) => {
-        res.render('restaurant/index', { restaurant });
+      }).then((restaurants) => {
+        res.render('restaurant/index', { restaurants });
       });
     })
     .catch((error) => next(error));
@@ -79,13 +81,14 @@ restaurantRouter.get('/create', routeGuardResOwner, (req, res) => {
 
 restaurantRouter.post('/create', uploader.single('image'), (req, res, next) => {
   const ownerId = req.user;
-  const { name, description, latitude, longitude, cuisineType, contact } = req.body;
+  const { name, description, latitude, longitude, cuisineType, contact, address } = req.body;
   const image = req.file.url;
   Restaurant.create({
     name,
     description,
     location: {
-      coordinates: [latitude, longitude]
+      coordinates: [latitude, longitude],
+      address
     },
     cuisineType,
     contact,
@@ -99,19 +102,33 @@ restaurantRouter.post('/create', uploader.single('image'), (req, res, next) => {
 });
 
 // List all restaurants
-restaurantRouter.get('/list', (req, res, next) => {
+restaurantRouter.get('/list', routeGuard, (req, res, next) => {
+  let curatedListOfRest = [];
+  const userAllergies = req.user.allergies;
+  console.log('user allergies = ', userAllergies);
   Restaurant.find()
-    .then((restaurants) => {
-      res.render('restaurant/list', { restaurants });
+    .then((allRestaurants) => {
+      return Menu.find()
+    .then(menus => {
+      for (let menu of menus) {
+        if (!menu.allergies.includes(userAllergies)) {
+          curatedListOfRest.push(menu.restaurantId);
+        }
+      }
+      return Restaurant.find({_id: curatedListOfRest})
+        .then(restaurants => res.render('restaurant/list', { restaurants }));
+      });
     })
-    .catch((error) => next(error));
+    .catch((error) => next(error));  
 });
 
 // View single restaurant
 restaurantRouter.get('/:restaurantId', (req, res, next) => {
   const restaurantId = req.params.restaurantId;
   Restaurant.findById(restaurantId)
-    .then((restaurant) => res.render('restaurant/single', { restaurant }))
+    .then((restaurant) => {
+      console.log(restaurant);
+      res.render('restaurant/single', { restaurant })})
     .catch((error) => next(error));
 });
 
@@ -125,12 +142,13 @@ restaurantRouter.get('/:restaurantId/edit', routeGuardResOwner, (req, res, next)
 
 restaurantRouter.post('/:restaurantId/edit', routeGuardResOwner, (req, res, next) => {
   const restaurantId = req.params.restaurantId;
-  const { name, description, latitude, longitude, cuisineType, contact } = req.body;
+  const { name, description, latitude, longitude, cuisineType, contact, address} = req.body;
   Restaurant.findByIdAndUpdate(restaurantId, {
     name,
     description,
     location: {
-      coordinates: [latitude, longitude]
+      coordinates: [latitude, longitude],
+      address
     },
     cuisineType,
     contact
@@ -162,25 +180,24 @@ restaurantRouter.post('/:restaurantId/addMenu', (req, res, next) => {
     restaurantId,
     dishName,
     allergies,
-    dishDescription   
+    dishDescription
   })
     .then((dishMenu) => {
       restaurantMenu.push(dishMenu);
       return restaurantMenu;
     })
-    .then(restMenu => {
-      res.render('restaurant/menu', {restMenu});
+    .then((restMenu) => {
+      res.render('restaurant/menu', { restMenu });
     })
     .catch((error) => next(error));
 });
 
-
 // View menu for single restaurant
 restaurantRouter.get('/:restaurantId/menu', (req, res, next) => {
   const restaurantId = req.params.restaurantId;
-  Menu.find({restaurantId})
+  Menu.find({ restaurantId })
     .then((restMenu) => {
-      res.render('restaurant/menu', {restMenu});
+      res.render('restaurant/menu', { restMenu });
     })
     .catch((error) => next(error));
 });

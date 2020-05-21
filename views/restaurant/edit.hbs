@@ -13,6 +13,9 @@
   <label for="input-location-longitude">Location Latitute</label>
   <input type="text" name="longitude" id="input-location-longitude" required value="{{location.coordinates.[1]}}"placeholder="Restaurant Longitude" />
 
+  <label for="input-location-address">Location Address</label>
+  <input type="text" name="address" id="input-location-address" required placeholder="Restaurant Address" />
+
   <label for="input-restaurant-cuisine-type">Cuisine Type</label>
   <select name="cuisineType" multiple size="3">
     <option value="">-- Select Cuisine Type (press ctrl or cmd to select many) --</option>
@@ -114,6 +117,6 @@
   <input type="tel" id="input-restaurant-contact" name="contact" pattern="[0-9]{3}[0-9]{3}[0-9]{3}" value="{{contact}}" required placeholder="Phone number" />
   <small>Format: 123456789</small>
 
-  <button class ="btn">Edit Restaurant</button>
+  <button class="btn">Edit Restaurant</button>
 </form>
 {{/with}}

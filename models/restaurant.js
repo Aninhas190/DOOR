@@ -17,7 +17,8 @@ const RestaurantSchema = new mongoose.Schema({
         min: -180,
         max: 180
       }
-    ]
+    ],
+    address: String
   },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
