@@ -12,19 +12,19 @@
         <p>Restaurant's {{name}} Menu</p>
     <thead>
         <tr>
-            <td>Dish Nanme</td>
+            <td>Dish Name</td>
+            <td>Dish Allergens</td>
             <td>Dish Description</td>
-            <td>Dish Ingredients Allergies</td>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            {{#each restMenu}}
+        {{#each restMenu}}
+            <tr>
                 <td>{{dishName}}</td>
-                <td>{{dishDescription}}</td>
                 <td>{{allergies}}</td>
-            {{/each}}
-        </tr>
+                <td>{{dishDescription}}</td>
+            </tr>
+        {{/each}}
     </tbody>
 </table>
 </section>
