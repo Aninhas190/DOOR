@@ -50,7 +50,7 @@ authenticationRouter.post('/sign-up', (req, res, next) => {
           from: `DOOR App <${process.env.NODEMAILER_EMAIL}>`,
           to: user.email,
           subject: 'DOOR website - Verify your e-mail',
-          html: `<p>To complete the sign-up process, click <a href="http://localhost:3000/authentication/confirm/${user.confirmationCode}">here </a>to verify your email</p>`
+          html: `<p>To complete the sign-up process, click <a href="https://dine-out-of-restrictions.herokuapp.com/authentication/confirm/${user.confirmationCode}">here </a>to verify your email</p>`
         })
         .then((result) => {
           res.render('index');
