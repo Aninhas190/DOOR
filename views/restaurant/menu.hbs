@@ -1,8 +1,30 @@
 <section class="container">
-    <p>Restaurant's {{name}} Menu</p>
-
+    {{!-- <p>Restaurant's {{name}} Menu</p> --}}
+{{!-- 
     {{#each restMenu}}
         <h5>{{dishName}}</h5>
         <p>{{allergies}}</p>
-    {{/each}}
+    {{/each}} --}}
+{{!-- </section> --}}
+
+
+<table>
+        <p>Restaurant's {{name}} Menu</p>
+    <thead>
+        <tr>
+            <td>Dish Nanme</td>
+            <td>Dish Description</td>
+            <td>Dish Ingredients Allergies</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            {{#each restMenu}}
+                <td>{{dishName}}</td>
+                <td>{{dishDescription}}</td>
+                <td>{{allergies}}</td>
+            {{/each}}
+        </tr>
+    </tbody>
+</table>
 </section>
