@@ -387,11 +387,11 @@ footer {
 
 table,
 td {
-  border: 1px solid #333;
+  border: 1px solid $color-shadow;
 }
 
 thead,
 tfoot {
-  background-color: #333;
-  color: #fff;
+  background-color: $color-flax;
+  font-weight: bold;
 }
