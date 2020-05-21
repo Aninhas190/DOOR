@@ -9,7 +9,6 @@ const Restaurant = require('./../models/restaurant');
 router.get('/', (req, res, next) => {
   Restaurant.find()
     .then((restaurants) => {
-      console.log(restaurants)
       res.render('index', { restaurants, title: 'DOOR' });
     })
     .catch((error) => next(error));

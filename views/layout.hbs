@@ -11,8 +11,9 @@
   <body>
     <nav>
       <a href="/">Home</a>
-      {{#if user}}
       <a href="/restaurant/list">Your Restaurant List</a>
+      {{#if user}}
+      <a href="/restaurant/yourlist">Your Restaurant List</a>
       <a href="/profile">{{ user.name }}'s Profile</a>
       <div class="testNav">
         <form action="/authentication/sign-out" method="POST">

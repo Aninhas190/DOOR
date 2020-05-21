@@ -1,51 +1,39 @@
-<div id="map-container"></div>
-
-<section class="restaurantList">
-    {{#each restaurants}}
-        <article class ="restaurantCard">
-            <img src="{{image}}" alt="image"/>
-            <div class = "items-inside-card">
-                <h4> <a href="{{_id}}">{{name}}</a> </h4>
-                <p>{{cuisineType}}</p>
-            </br>
-            </div>
-        </article>
-    {{/each}}
+<h4>All the restaurants</h4>
+<section>
+  <div id="map-container"></div>
 </section>
 
 <script>
-    const restaurants = {{{ json restaurants }}};
+  const restaurants = {{{ json restaurants }}};
+  function initMap() {
+    const $mapContainer = document.getElementById('map-container');
+    const map = new window.google.maps.Map($mapContainer, {
+      center: {lat: 38.7223, lng: -9.10},
+      zoom: 11
+    });
 
-    function initMap() {
-        const $mapContainer = document.getElementById('map-container');
-        const map = new window.google.maps.Map($mapContainer, {
-            center: {lat: 38.7223, lng: -9.10},
-            zoom: 11
-        });
+    //let icon 
+
+    const markers = [];
+
+    for (let restaurant of restaurants) {
+      const marker = new window.google.maps.Marker({
+        map,
+        position: { 
+          lat: restaurant.location.coordinates[0],
+          lng: restaurant.location.coordinates[1] 
+        },
+        title: restaurant.name
+      });
     
+      marker.addListener('click', () => {
+      const restaurantSingle = `/restaurant/${restaurant._id}`;
+      window.location = restaurantSingle;
+    });
+    markers.push(marker);
+  }
 
-        const markers = [];
-
-        for (let restaurant of restaurants) {
-            const marker = new window.google.maps.Marker({
-                map,
-                position: { 
-                    lat: restaurant.location.coordinates[0],
-                    lng: restaurant.location.coordinates[1] 
-                },
-                title: restaurant.name
-            });
-            
-            marker.addListener('click', () => {
-                const restaurantSingle = `/restaurant/${restaurant._id}`;
-                window.location = restaurantSingle;
-            })
-            markers.push(marker);
-        }
-
-    }
-
-
+  }
 </script>
 
 {{> mapscript}}

@@ -101,8 +101,17 @@ restaurantRouter.post('/create', uploader.single('image'), (req, res, next) => {
     .catch((error) => next(error));
 });
 
-// List all restaurants
-restaurantRouter.get('/list', routeGuard, (req, res, next) => {
+//List of all the restaurants
+restaurantRouter.get('/list', (req, res, next) => {
+  Restaurant.find()
+    .then((restaurants) => {
+      res.render('index', {restaurants});
+    })
+    .catch((error) => next(error));
+});
+
+// List all restaurants where the user can eat
+restaurantRouter.get('/yourlist', routeGuard, (req, res, next) => {
   let curatedListOfRest = [];
   const userAllergies = req.user.allergies;
   console.log('user allergies = ', userAllergies);
@@ -115,7 +124,7 @@ restaurantRouter.get('/list', routeGuard, (req, res, next) => {
           }
         }
         return Restaurant.find({ _id: curatedListOfRest }).then((restaurants) =>
-          res.render('restaurant/list', { restaurants })
+          res.render('restaurant/yourList', { restaurants })
         );
       });
     })
