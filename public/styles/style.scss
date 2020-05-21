@@ -257,9 +257,9 @@ footer {
 
 .restaurantList {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-evenly;
-  align-items: flex-start;
   margin: auto 2em;
 }
 
@@ -383,4 +383,15 @@ footer {
 .href-as-green-button:hover {
   text-decoration: none;
   color: white;
+}
+
+table,
+td {
+  border: 1px solid #333;
+}
+
+thead,
+tfoot {
+  background-color: #333;
+  color: #fff;
 }
