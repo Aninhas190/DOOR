@@ -1,20 +1,22 @@
-<h4>All the restaurants</h4>
-<section>
-  <div id="map-container"></div>
-</section>
+<div class="container">
+  <h4>All the restaurants</h4>
+  <section>
+    <div id="map-container"></div>
+  </section>
 
-<section class="restaurantList">
-  {{#each restaurants}}
-    <article class ="restaurantCard">
-      <img src="{{image}}" alt="image"/>
-      <div class = "items-inside-card">
-        <h4> <a href="{{_id}}">{{name}}</a> </h4>
-        <p>{{cuisineType}}</p>
-      </br>
-      </div>
-    </article>
-  {{/each}}
-</section>
+  <section class="restaurantList">
+    {{#each restaurants}}
+      <article class ="restaurantCard">
+        <img src="{{image}}" alt="image"/>
+        <div class = "items-inside-card">
+          <h4> <a href="{{_id}}">{{name}}</a> </h4>
+          <p>{{cuisineType}}</p>
+        </br>
+        </div>
+      </article>
+    {{/each}}
+  </section>
+</div>
 
 
 <script>
