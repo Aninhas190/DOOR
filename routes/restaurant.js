@@ -119,7 +119,7 @@ restaurantRouter.get('/yourlist', routeGuard, (req, res, next) => {
     .then((allRestaurants) => {
       return Menu.find().then((menus) => {
         for (let menu of menus) {
-          if (!userAllergies) {
+          if (!userAllergies.length) {
             curatedListOfRest.push(allRestaurants._id);
           } else if (!menu.allergies.includes(userAllergies)) {
             curatedListOfRest.push(menu.restaurantId);
