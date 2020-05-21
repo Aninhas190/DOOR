@@ -68,7 +68,7 @@ restaurantRouter.post('/createByZomatoId', (req, res, next) => {
         contact: restaurantData.phone_numbers.split(' ').join(''),
         owner: ownerId
       }).then((restaurants) => {
-        res.redirect('/');
+        res.redirect('/restaurant');
       });
     })
     .catch((error) => next(error));
@@ -178,7 +178,7 @@ restaurantRouter.get('/:restaurantId/delete', (req, res, next) => {
 restaurantRouter.get('/:restaurantId/addMenu', routeGuardResOwner, (req, res, next) => {
   const restaurantId = req.params.restaurantId;
   Restaurant.findById(restaurantId)
-    .then((restaurant) => res.render('restaurant/addMenu', {}))
+    .then((restaurant) => res.redirect('/restaurant/menu'))
     .catch((error) => next(error));
 });
 
