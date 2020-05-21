@@ -255,12 +255,13 @@ footer {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  margin: auto 2em;
 }
 
 .restaurantCard {
+  position: relative;
   background-color: rgba($color: $color-olivine, $alpha: 0.3);
   border-radius: 3px;
-  width: 20em;
   height: 40vh;
   width: 40vh;
   display: flex;
@@ -268,8 +269,7 @@ footer {
   align-items: center;
   justify-content: center;
   text-align: center;
-  position: relative;
-  padding: 2em;
+  padding: 3em;
   margin: 2em;
 
   img {
@@ -321,24 +321,26 @@ footer {
   img {
     padding-bottom: 2em;
   }
-}
 
-.href-as-green-button {
-  text-align: center;
-  margin: 0 2em;
-  padding: 1em;
-  width: 25em;
-  color: $color-href;
-  background-color: $color-teagreen;
-  border: 1px solid white;
-  color: #624d01;
-  border-radius: 3px;
-  font-weight: 700;
-}
-
-.href-as-green-button:hover {
-  text-decoration: none;
-  color: white;
+  .href-as-green-button {
+    position: relative;
+    text-align: center;
+    left: 3em;
+    bottom: 4em;
+    width: fit-content;
+    color: $color-href;
+    background-color: $color-teagreen;
+    border: 1px solid white;
+    color: #624d01;
+    border-radius: 3px;
+    font-weight: 700;
+  }
+  
+  .href-as-green-button:hover {
+    text-decoration: none;
+    color: white;
+  }
+  
 }
 
 .display-allergies {
@@ -347,3 +349,28 @@ footer {
   flex-direction: column;
   justify-content: space-evenly;
 }
+
+.profile {
+  h3 {
+    text-transform: uppercase;
+  }
+  .href-as-green-button {
+    position: absolute;
+    text-align: center;
+    left: 3em;
+    bottom: 4em;
+    width: 15em;
+    color: $color-href;
+    background-color: $color-teagreen;
+    border: 1px solid white;
+    color: #624d01;
+    border-radius: 3px;
+    font-weight: 700;
+  }
+
+  .href-as-green-button:hover {
+    text-decoration: none;
+    color: white;
+  }
+}
+

@@ -1,10 +1,10 @@
-<section class="container" >
+<section class="container profile" >
     
     {{#if user.isOwner}}
         <a class="href-as-green-button" href="/restaurant">See my list of restaurants</a></strong>
     {{/if}}
 
-    <h1>User's Profile info</h1>
+    <h3>{{user.name}}'s Profile info</h3>
     <span><strong>User Type</strong>: {{user.userType}}</span>
     <br />
     <span><strong>Name</strong>: {{user.name}}</span>

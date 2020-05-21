@@ -201,12 +201,13 @@ footer {
 .restaurantList {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly; }
+  justify-content: space-evenly;
+  margin: auto 2em; }
 
 .restaurantCard {
+  position: relative;
   background-color: rgba(175, 201, 126, 0.3);
   border-radius: 3px;
-  width: 20em;
   height: 40vh;
   width: 40vh;
   display: flex;
@@ -214,8 +215,7 @@ footer {
   align-items: center;
   justify-content: center;
   text-align: center;
-  position: relative;
-  padding: 2em;
+  padding: 3em;
   margin: 2em; }
   .restaurantCard img {
     width: 8em;
@@ -253,16 +253,37 @@ footer {
   justify-content: flex-start; }
   .restaurant-index img {
     padding-bottom: 2em; }
+  .restaurant-index .href-as-green-button {
+    position: relative;
+    text-align: center;
+    left: 3em;
+    bottom: 4em;
+    width: fit-content;
+    color: #624d01;
+    background-color: #d4e6b5;
+    border: 1px solid white;
+    color: #624d01;
+    border-radius: 3px;
+    font-weight: 700; }
+  .restaurant-index .href-as-green-button:hover {
+    text-decoration: none;
+    color: white; }
 
-.href-as-green-button {
+.display-allergies {
+  flex-wrap: wrap;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly; }
+
+.profile h3 {
+  text-transform: uppercase; }
+
+.profile .href-as-green-button {
+  position: absolute;
   text-align: center;
-<<<<<<< HEAD
-  margin: 0 2em;
-=======
-  margin: auto 2em;
->>>>>>> cc21960359068de5102d7b0812bc0d3fcb33a4e8
-  padding: 1em;
-  width: 25em;
+  left: 3em;
+  bottom: 4em;
+  width: 15em;
   color: #624d01;
   background-color: #d4e6b5;
   border: 1px solid white;
@@ -270,14 +291,8 @@ footer {
   border-radius: 3px;
   font-weight: 700; }
 
-.href-as-green-button:hover {
+.profile .href-as-green-button:hover {
   text-decoration: none;
   color: white; }
-
-.display-allergies {
-  flex-wrap: wrap;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly; }
 
 /*# sourceMappingURL=style.css.map */
