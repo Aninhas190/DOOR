@@ -259,6 +259,7 @@ footer {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  align-items: flex-start;
   margin: auto 2em;
 }
 
@@ -285,7 +286,7 @@ footer {
 
   .items-inside-card {
     position: absolute;
-    bottom: 10%;
+    bottom: 2%;
   }
 }
 
