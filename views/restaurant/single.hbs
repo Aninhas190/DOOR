@@ -8,8 +8,10 @@
         {{restaurant.cuisineType}}
     </p>
     <p> 
+      {{#if restaurant.description}}
         <strong>Restaurant Description:</strong>
         {{restaurant.description}}
+      {{/if}}  
     </p>
     <p>{{restaurant.location.address}}</p>
     <a class="href-as-yellow-button" href="/restaurant/{{restaurant._id}}/menu">View Menu</a>
