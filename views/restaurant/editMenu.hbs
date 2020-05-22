@@ -1,8 +1,8 @@
-<section class="centered">
+<section class="centered container">
   <h1>Edit Dish</h1>
 
   {{#with dish}}
-  <form action="" method="post">
+  <form id="form" method="post">
     <label for="dish-name-input">Dish name</label>
     <input type="text" id="dish-name-input" name="dishName" value="{{dishName}}" required />
     
@@ -10,7 +10,7 @@
     <label for="dish-description-input">Dish Description</label>
     <textarea type="text" id="dish-description-input" name="dishDescription">{{dishDescription}}</textarea>
 
-    <div class="display-allergies">
+    <div>
       {{> allergies}} 
     </div> 
 
