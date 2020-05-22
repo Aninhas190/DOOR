@@ -1,5 +1,6 @@
 <section class="container centered">
-<h4>Restaurant's {{name}} Menu</h4>
+
+<h4>Your Menu from {{restaurant.name}}</h4>
 
 <br>
 
@@ -12,7 +13,7 @@
         </tr>
     </thead>
     <tbody>
-        {{#each restMenu}}
+        {{#each specialDishes}}
             <tr>
                 <td scope="row">{{dishName}}</td>
                 <td scope="row">{{allergies}}</td>
