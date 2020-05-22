@@ -179,8 +179,14 @@ restaurantRouter.get('/:restaurantId/delete', (req, res, next) => {
 
 restaurantRouter.get('/:restaurantId/addMenu', routeGuardResOwner, (req, res, next) => {
   const restaurantId = req.params.restaurantId;
-  Menu.find({ restaurantId })
-    .then((restMenu) => res.render('restaurant/addMenu', { restMenu }))
+  let restaurant;
+  Restaurant.findById(restaurantId)
+    .then((document) => {
+      restaurant = document.toObject();
+      return Menu.find({ restaurantId }).then((restMenu) =>
+        res.render('restaurant/addMenu', { restMenu, restaurant })
+      );
+    })
     .catch((error) => next(error));
 });
 
