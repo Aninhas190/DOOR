@@ -253,19 +253,27 @@ restaurantRouter.get('/:restaurantId/yourMenu', (req, res, next) => {
     .then((document) => {
       restaurant = document.toObject();
       return Menu.find({ restaurantId }).then((dishes) => {
+        console.log(dishes);
+        console.log(userAllergies);
         for (let dish of dishes) {
           if (userAllergies === null) {
             yourDishes.push(dish._id);
-          } else if (!dish.allergies.includes(userAllergies)) {
-            yourDishes.push(dish._id);
+          } else {
+            for (let allergy of userAllergies) {
+              if (!dish.allergies.includes(allergy)) {
+                yourDishes.push(dish._id);
+              }
+            }
           }
         }
-        return Menu.find({ _id: yourDishes }).then((specialDishes) =>
-          res.render('restaurant/yourMenu', { specialDishes, restaurant })
-        );
+        return Menu.find({ _id: yourDishes }).then((specialDishes) => {
+          console.log(specialDishes);
+          res.render('restaurant/yourMenu', { specialDishes, restaurant });
+        });
       });
     })
-    .catch((error) => next(error));
+  .catch((error) => next(error));
 });
+
 
 module.exports = restaurantRouter;
