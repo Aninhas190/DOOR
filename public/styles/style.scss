@@ -163,15 +163,13 @@ textarea {
 }
 
 .index-last-section {
-  // background-color: $color-teagreen;
+  margin: 0 auto;
   height: 60vh;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
-  .box:first-child {
-    margin-right: 3em;
-  }
+
   .href-as-yellow-button {
     text-align: center;
     margin-top: auto 2em;
@@ -184,32 +182,35 @@ textarea {
     border-radius: 3px;
     font-weight: 700;
     position: absolute;
+    margin: 1em;
 
     .href-as-yellow-button:hover {
       text-decoration: none;
       color: white;
     }
   }
-}
-
-.box {
-  padding: 3em 2em;
-  background-color: rgba($color: $color-olivine, $alpha: 0.3);
-  border-radius: 3px;
-  width: 20em;
-  height: 40vh;
-  width: 80vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  position: relative;
+  .box {
+    // padding: auto 2em;
+    margin: 1em;
+    background-color: rgba($color: $color-olivine, $alpha: 0.3);
+    border-radius: 3px;
+    width: 20em;
+    height: 40vh;
+    width: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+  }
 }
 
 .items-inside-box {
   position: absolute;
   top: 1em;
+  padding-left: 2em;
+  padding-right: 2em;
 }
 
 .href-as-yellow-button {
@@ -243,7 +244,7 @@ footer {
 }
 
 #map-container {
-  margin: 3em auto 5em auto;
+  margin: 3em auto 3em auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -382,6 +383,6 @@ footer {
   color: white;
 }
 
-.list-container {
-  margin-right: 2em;
+hr {
+  border: 2px solid $color-teagreen;
 }
