@@ -1,0 +1,20 @@
+<section class="centered">
+  <h1>Edit Dish</h1>
+
+  {{#with dish}}
+  <form action="" method="post">
+    <label for="dish-name-input">Dish name</label>
+    <input type="text" id="dish-name-input" name="dishName" value="{{dishName}}" required />
+    
+    
+    <label for="dish-description-input">Dish Description</label>
+    <textarea type="text" id="dish-description-input" name="dishDescription">{{dishDescription}}</textarea>
+
+    <div class ="display-allergies">
+      {{> allergies}} 
+    </div> 
+
+    <button class="btn">Edit dish</button>
+  </form>
+  {{/with}}
+</section>

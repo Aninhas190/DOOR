@@ -89,12 +89,14 @@ authenticationRouter.post('/log-in', (req, res, next) => {
     })
     .then((result) => {
       req.session.user = user;
-      if (result && user.userType === 'foodie') {
+      if (result && user.userType === 'foodie' && user.status === 'active') {
         res.redirect('/profile');
-      } else if (result && user.userType === 'restaurantOwner') {
+      } else if (result && user.userType === 'restaurantOwner' && user.status === 'active') {
         res.redirect('/restaurant');
-      } else if (result && user.userType === 'admin' )  {
+      } else if (result && user.userType === 'admin' && user.status === 'active')  {
         res.redirect('/admin');
+      } else if (result && user.status === 'inactive') {  
+        return Promise.reject(new Error('Please check your email to confirm your account'));
       } else {
         return Promise.reject(new Error('Wrong password.'));
       }

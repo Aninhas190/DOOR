@@ -182,8 +182,8 @@ restaurantRouter.get('/:restaurantId/delete', (req, res, next) => {
 
 restaurantRouter.get('/:restaurantId/addMenu', routeGuardResOwner, (req, res, next) => {
   const restaurantId = req.params.restaurantId;
-  Restaurant.findById(restaurantId)
-    .then((restaurant) => res.redirect('/restaurant/menu'))
+  Menu.find({restaurantId})
+    .then((restMenu) => res.render('restaurant/addMenu', {restMenu} ))
     .catch((error) => next(error));
 });
 
@@ -202,15 +202,33 @@ restaurantRouter.post('/:restaurantId/addMenu', (req, res, next) => {
       return restaurantMenu;
     })
     .then((restMenu) => {
-      res.render('restaurant/menu', { restMenu });
+      res.redirect('addMenu');
     })
     .catch((error) => next(error));
 });
 
-restaurantRouter.get('/:restaurantId/menu/delete', (req, res, next) => {
+
+restaurantRouter.get('/:restaurantId/:dishId/edit', (req, res, next) => {
+  const dishId = req.params.dishId;
+  Menu.findById(dishId)
+    .then((dish) => res.render('restaurant/editMenu', {dish}))
+    .catch((error) => next(error));
+});
+
+restaurantRouter.post('/:restaurantId/:dishId/edit', (req, res, next) => {
+  const dishId = req.params.dishId;
   const restaurantId = req.params.restaurantId;
-  Menu.findOneAndDelete({ restaurantId })
-    .then((dish) => res.redirect('/restaurant/menu'))
+  const { dishName, allergies, dishDescription } = req.body;
+  Menu.findByIdAndUpdate(dishId, {dishName, allergies, dishDescription})
+    .then((dish) => res.redirect('/restaurant/'+restaurantId+'/addMenu'))
+    .catch((error) => next(error));
+});
+
+restaurantRouter.get('/:restaurantId/:dishId/delete', (req, res, next) => {
+  const dishId = req.params.dishId;
+  const restaurantId = req.params.restaurantId;
+  Menu.findOneAndDelete(dishId)
+    .then((dish) => res.redirect('/restaurant/'+restaurantId+'/addMenu'))
     .catch((error) => next(error));
 });
 
