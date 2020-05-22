@@ -53,6 +53,7 @@ restaurantRouter.post('/createByZomatoId', (req, res, next) => {
   zomato
     .restaurant({ res_id: zomatoRestaurantId })
     .then((restaurantData) => {
+      console.log(restaurantData);
       const image = restaurantData.thumb.split('?').splice(0, 1);
       const longitude = parseFloat(restaurantData.location.longitude);
       const latitude = parseFloat(restaurantData.location.latitude);
