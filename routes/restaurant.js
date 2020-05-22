@@ -237,11 +237,15 @@ restaurantRouter.get('/:restaurantId/:dishId/delete', (req, res, next) => {
 // View menu for single restaurant
 restaurantRouter.get('/:restaurantId/menu', (req, res, next) => {
   const restaurantId = req.params.restaurantId;
-  Menu.find({ restaurantId })
-    .then((restMenu) => {
-      res.render('restaurant/menu', { restMenu });
-    })
-    .catch((error) => next(error));
+  let restaurant;
+  Restaurant.findById(restaurantId).then(document => {
+    restaurant = document.toObject();
+    return Menu.find({ restaurantId })
+      .then((restMenu) => {
+        res.render('restaurant/menu', { restMenu, restaurant });
+      })
+    .catch(error => next(error));
+  });
 });
 
 restaurantRouter.get('/:restaurantId/yourMenu', (req, res, next) => {
