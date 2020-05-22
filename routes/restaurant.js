@@ -114,8 +114,6 @@ restaurantRouter.get('/list', (req, res, next) => {
 restaurantRouter.get('/yourlist', routeGuard, (req, res, next) => {
   let curatedListOfRest = [];
   const userAllergies = req.user.allergies;
-  console.log(userAllergies);
-  console.log('user allergies = ', userAllergies);
   Restaurant.find()
     .then((allRestaurants) => {
       return Menu.find().then((menus) => {
@@ -141,7 +139,6 @@ restaurantRouter.get('/:restaurantId', (req, res, next) => {
   const restaurantId = req.params.restaurantId;
   Restaurant.findById(restaurantId)
     .then((restaurant) => {
-      console.log(restaurant);
       res.render('restaurant/single', { restaurant });
     })
     .catch((error) => next(error));
@@ -220,7 +217,7 @@ restaurantRouter.post('/:restaurantId/:dishId/edit', (req, res, next) => {
   const restaurantId = req.params.restaurantId;
   const { dishName, allergies, dishDescription } = req.body;
   Menu.findByIdAndUpdate(dishId, {dishName, allergies, dishDescription})
-    .then((dish) => res.redirect('/restaurant/'+restaurantId+'/addMenu'))
+    .then((dish) => res.redirect(`/restaurant/${restaurantId}/addMenu`))
     .catch((error) => next(error));
 });
 
@@ -228,7 +225,7 @@ restaurantRouter.get('/:restaurantId/:dishId/delete', (req, res, next) => {
   const dishId = req.params.dishId;
   const restaurantId = req.params.restaurantId;
   Menu.findOneAndDelete(dishId)
-    .then((dish) => res.redirect('/restaurant/'+restaurantId+'/addMenu'))
+    .then((dish) => res.redirect(`/restaurant/${restaurantId}/addMenu`))
     .catch((error) => next(error));
 });
 
@@ -241,5 +238,24 @@ restaurantRouter.get('/:restaurantId/menu', (req, res, next) => {
     })
     .catch((error) => next(error));
 });
+
+restaurantRouter.get('/:restaurantId/yourMenu', (req, res, next) => {
+  let yourDishes = [];
+  const userAllergies = req.user.allergies;
+  const restaurantId = req.params.restaurantId
+  Menu.find({restaurantId})
+    .then((dishes) => {
+        for (let dish of dishes) {
+          if (userAllergies === null) {
+            yourDishes.push(dish._id);
+          } else if (!dish.allergies.includes(userAllergies)) {
+            yourDishes.push(dish._id);
+          } 
+        }
+        return Menu.find({_id:yourDishes}).then(specialDishes => res.render('restaurant/yourMenu', {specialDishes}));
+      })
+    .catch((error) => next(error));
+});
+
 
 module.exports = restaurantRouter;

@@ -1,4 +1,4 @@
-<section class="container restSingle">
+<section class="container centered">
     
     <img src="{{restaurant.image}}" alt="image"/>
     
@@ -13,6 +13,7 @@
     </p>
     <p>{{restaurant.location.address}}</p>
     <a class="href-as-yellow-button" href="/restaurant/{{restaurant._id}}/menu">View Menu</a>
+    <a class="href-as-yellow-button" href="/restaurant/{{restaurant._id}}/yourMenu">View Your Menu</a>
 
     <div id="map-container"></div>
 
@@ -283,9 +284,7 @@
     
         const iconBase = { 
           url: 'http://maps.google.com/mapfiles/kml/paddle/ylw-stars.png',
-          scaledSize: new google.maps.Size(50, 50),
-          origin: new google.maps.Point(0,0),
-          anchor: new google.maps.Point(0,0) 
+          scaledSize: new google.maps.Size(50, 50)
         }
         
         const marker = new window.google.maps.Marker({
