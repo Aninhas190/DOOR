@@ -1,25 +1,35 @@
-<section class="container profile" >
+<section class="container centered jumbotron" >
     
-    {{#if user.isOwner}}
-        <a class="href-as-green-button" href="/restaurant">See my list of restaurants</a></strong>
-    {{else if user.isAdmin}}
-        <a class="href-as-green-button" href="/admin">See all restaurants</a></strong>
-    {{/if}}
 
-    <h3>{{user.name}}'s Profile info</h3>
-    <span><strong>User Type</strong>: {{user.userType}}</span>
-    <br />
-    <span><strong>Name</strong>: {{user.name}}</span>
-    <br />
-    <span><strong>Email</strong>: {{user.email}}</span>
-    <br />
+    <h3 class="display-4">Hello {{user.name}}!</h3>
+
+    <p class="lead">Here you can check your profile info and <a href="/foodie/edit">edit</a> your allergies.</p>
+    <hr class="my-4">
+
     <div>
-    <strong>Allergies (click</strong>
-    <strong><a href="/foodie/edit">here</a></strong>
-    <strong> to update ):</strong>
-    <span>{{user.allergies}}</span>
+        <span><strong>User Type</strong>: {{user.userType}}</span>
+        <br />
+        <span><strong>Name</strong>: {{user.name}}</span>
+        <br />
+        <span><strong>Email</strong>: {{user.email}}</span>
+        <br />
+        <span><strong>Allergies: </strong> 
+        {{#if user.allergies }}
+            {{user.allergies}}
+        {{else}}
+            For now, you don't have allergies associated with your profile.
+        {{/if}}
     </div>
-        </br>
+
+    <p class="lead">
+        <br>
+        <a class="btn href-as-green-button" href="/foodie/edit" role="button">Update your allergies</a></strong>
+    {{#if user.isOwner}}
+        <a class="btn href-as-green-button" href="/restaurant" role="button">See my list of restaurants</a></strong>
+    {{else if user.isAdmin}}
+        <a class="btn href-as-green-button" href="/admin" role="button">See all restaurants</a></strong>
+    {{/if}}
+    </p>
 
 </section>
 
