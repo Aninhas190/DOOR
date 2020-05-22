@@ -20,16 +20,11 @@ userRouter.get('/edit', routeGuard, (req, res, next) => {
 userRouter.post('/edit', (req, res, next) => {
   const allergies = req.body.allergies;
   const userId = req.user._id;
-  User.findByIdAndUpdate(userId,{ allergies })
+  User.findByIdAndUpdate(userId, { allergies })
     .then((user) => {
-      res.redirect('/');
+      res.redirect('/profile');
     })
     .catch((error) => next(error));
 });
-
-
-
-
-
 
 module.exports = userRouter;
