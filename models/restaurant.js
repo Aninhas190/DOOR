@@ -5,7 +5,10 @@ const mongoose = require('mongoose');
 
 
 const RestaurantSchema = new mongoose.Schema({
-  name: String,
+  name: {
+    type: String,
+    unique: required
+  },  
   location: {
     type: {
       type: String,
