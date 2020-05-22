@@ -96,7 +96,7 @@ restaurantRouter.post('/create', uploader.single('image'), (req, res, next) => {
     owner: ownerId
   })
     .then((restaurant) => {
-      res.render('restaurant/index', { restaurant });
+      res.redirect('/restaurant');
     })
     .catch((error) => next(error));
 });
@@ -124,7 +124,7 @@ restaurantRouter.get('/yourlist', routeGuard, (req, res, next) => {
             }
           } else if (!menu.allergies.includes(userAllergies)) {
             curatedListOfRest.push(menu.restaurantId);
-          } 
+          }
         }
         return Restaurant.find({ _id: curatedListOfRest }).then((restaurants) =>
           res.render('restaurant/yourList', { restaurants })
@@ -179,8 +179,8 @@ restaurantRouter.get('/:restaurantId/delete', (req, res, next) => {
 
 restaurantRouter.get('/:restaurantId/addMenu', routeGuardResOwner, (req, res, next) => {
   const restaurantId = req.params.restaurantId;
-  Menu.find({restaurantId})
-    .then((restMenu) => res.render('restaurant/addMenu', {restMenu} ))
+  Menu.find({ restaurantId })
+    .then((restMenu) => res.render('restaurant/addMenu', { restMenu }))
     .catch((error) => next(error));
 });
 
@@ -204,11 +204,10 @@ restaurantRouter.post('/:restaurantId/addMenu', (req, res, next) => {
     .catch((error) => next(error));
 });
 
-
 restaurantRouter.get('/:restaurantId/:dishId/edit', (req, res, next) => {
   const dishId = req.params.dishId;
   Menu.findById(dishId)
-    .then((dish) => res.render('restaurant/editMenu', {dish}))
+    .then((dish) => res.render('restaurant/editMenu', { dish }))
     .catch((error) => next(error));
 });
 
@@ -216,7 +215,7 @@ restaurantRouter.post('/:restaurantId/:dishId/edit', (req, res, next) => {
   const dishId = req.params.dishId;
   const restaurantId = req.params.restaurantId;
   const { dishName, allergies, dishDescription } = req.body;
-  Menu.findByIdAndUpdate(dishId, {dishName, allergies, dishDescription})
+  Menu.findByIdAndUpdate(dishId, { dishName, allergies, dishDescription })
     .then((dish) => res.redirect(`/restaurant/${restaurantId}/addMenu`))
     .catch((error) => next(error));
 });
@@ -242,20 +241,25 @@ restaurantRouter.get('/:restaurantId/menu', (req, res, next) => {
 restaurantRouter.get('/:restaurantId/yourMenu', (req, res, next) => {
   let yourDishes = [];
   const userAllergies = req.user.allergies;
-  const restaurantId = req.params.restaurantId
-  Menu.find({restaurantId})
-    .then((dishes) => {
+  const restaurantId = req.params.restaurantId;
+  let restaurant;
+  Restaurant.findById(restaurantId)
+    .then((document) => {
+      restaurant = document.toObject();
+      return Menu.find({ restaurantId }).then((dishes) => {
         for (let dish of dishes) {
           if (userAllergies === null) {
             yourDishes.push(dish._id);
           } else if (!dish.allergies.includes(userAllergies)) {
             yourDishes.push(dish._id);
-          } 
+          }
         }
-        return Menu.find({_id:yourDishes}).then(specialDishes => res.render('restaurant/yourMenu', {specialDishes}));
-      })
+        return Menu.find({ _id: yourDishes }).then((specialDishes) =>
+          res.render('restaurant/yourMenu', { specialDishes, restaurant })
+        );
+      });
+    })
     .catch((error) => next(error));
 });
-
 
 module.exports = restaurantRouter;
