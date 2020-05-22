@@ -1,13 +1,13 @@
 <section class="container">
   <p><strong>If your restaurant is registered on Zomato, please click  <a href="/restaurant/createByZomatoId">here</a></strong></p>
-  <form class="container" method="POST" enctype="multipart/form-data">
+  <form id="form" method="POST" enctype="multipart/form-data">
 
     <label for="input-restaurant-name">Restaurant Name</label>
     <input type="text" id="input-restaurant-name" name="name" required placeholder="Restaurant Name" />
 
     <label for="input-image">Restaurant Image</label>
     <input type="file" id="input-image" name="image" placeholder="Restaurant Image" />
-
+    <br>
     <label for="input-location-latitute">Location Latitute</label>
     <input type="text" name="latitude" id="input-location-latitute" required placeholder="Restaurant Latitude" />
 
