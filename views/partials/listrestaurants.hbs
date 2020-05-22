@@ -256,7 +256,7 @@
       ]
     });
 
-    //let icon 
+    var iconBase = 'http://maps.google.com/mapfiles/kml/paddle/ylw-stars.png';
 
     const markers = [];
 
@@ -267,7 +267,8 @@
           lat: restaurant.location.coordinates[0],
           lng: restaurant.location.coordinates[1] 
         },
-        title: restaurant.name
+        title: restaurant.name,
+        icon: iconBase
       });
     
       marker.addListener('click', () => {

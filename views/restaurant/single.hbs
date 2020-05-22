@@ -23,6 +23,7 @@
 
     const latitude = restaurant.location.coordinates[0];
     const longitude = restaurant.location.coordinates[1];
+    
 
     function initMap() {
         const $mapContainer = document.getElementById('map-container');
@@ -280,7 +281,7 @@
       ]
         });
     
-
+        const iconBase = 'http://maps.google.com/mapfiles/kml/paddle/ylw-stars.png';
         
         const marker = new window.google.maps.Marker({
             map,
@@ -288,7 +289,8 @@
                 lat: latitude,
                 lng: longitude 
             },
-            title: restaurant.name
+            title: restaurant.name,
+            icon: iconBase
         });
             
                        
