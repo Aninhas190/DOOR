@@ -281,7 +281,12 @@
       ]
         });
     
-        const iconBase = 'http://maps.google.com/mapfiles/kml/paddle/ylw-stars.png';
+        const iconBase = { 
+          url: 'http://maps.google.com/mapfiles/kml/paddle/ylw-stars.png',
+          scaledSize: new google.maps.Size(50, 50),
+          origin: new google.maps.Point(0,0),
+          anchor: new google.maps.Point(0,0) 
+        }
         
         const marker = new window.google.maps.Marker({
             map,
